@@ -1,0 +1,245 @@
+.bg {
+  /* background-image: url(../../components/img/bg.png); */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(67.3% 67.3% at 50% 50%, #6b83ff 0%, #001bea 100%);
+}
+
+/* .login {
+  background: linear-gradient(42.92deg, #24ce9a 22.21%, #7351fc 55.44%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+} */
+
+.btn-bg {
+  background-image: linear-gradient(90deg, #21d397 0, #7450fe 50%, #21d397);
+  background-image: -moz-linear-gradient(
+    to right,
+    #21d397 0,
+    #7450fe 50%,
+    #21d397 100%
+  );
+  transition: all 0.8s;
+  background-size: 200% auto;
+}
+
+/* .btn-bg:hover {
+  color: #fff;
+  background-position: right center;
+} */
+
+.text-color {
+  background: linear-gradient(93.46deg, #22d198 -7.56%, #7351fc 102.96%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* .bordercolor {
+  background-clip: content-box, border-box;
+
+  border-image-source: linear-gradient(
+    96.33deg,
+    #7351fc 4.24%,
+    #27c89f 100.57%
+  );
+} */
+
+.table {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin-top: -21px;
+}
+
+.card {
+  position: relative;
+  width: 206px;
+  width: 176px;
+  height: 248px;
+}
+.card .face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.5s;
+  transform: perspective(600px) rotateY(0deg);
+  box-shadow: 0 5px 10px #000;
+}
+.card .front {
+  transform: perspective(600px) rotateY(0deg);
+  box-shadow: 0 5px 10px #000;
+}
+.card .front img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card .front h3 {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+.card .back {
+  transform: perspective(600px) rotateY(180deg);
+  position: relative;
+  width: 176px;
+  height: 248px;
+  /* margin: 20px; */
+}
+.card .back h3 {
+  font-size: 30px;
+  margin-top: 20px;
+  letter-spacing: 2px;
+}
+.card .back p {
+  letter-spacing: 1px;
+}
+.card:hover .front {
+  transform: perspective(600px) rotateY(180deg);
+}
+.card:hover .back {
+  transform: perspective(600px) rotateY(360deg);
+}
+.box {
+  text-align: ceneter;
+}
+@media (max-width: 991px) {
+  .general-container {
+    margin-top: -50px;
+  }
+}
+
+.sample {
+  width: 50vw;
+}
+
+.slick-next:before,
+.slick-prev:before {
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.75;
+  color: transparent;
+}
+
+.slick-dots li button:before {
+  font-size: 10px !important;
+  line-height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  content: "•";
+  text-align: center;
+  opacity: 1;
+  color: #030239 !important;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 0.75;
+  color: #030239 !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-family: "slick";
+  font-size: 30px !important ;
+  line-height: 1;
+  opacity: 0.75;
+  color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slider .slick-dots {
+  position: absolute;
+  bottom: 0px !important;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
+.slick-next {
+  right: -70px !important;
+}
+.slick-prev {
+  left: -70px !important;
+}
+.slick-prev,
+.slick-next {
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 36px !important;
+  height: 0 !important;
+  padding: 0;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+@media (max-width: 640px) {
+  .card {
+    position: relative;
+    width: 183px;
+    height: 263px;
+    margin: 20px;
+  }
+  .card .back {
+    transform: perspective(600px) rotateY(180deg);
+    position: relative;
+    width: 180px;
+    height: 255px;
+
+    /* margin: 20px; */
+  }
+}
+
+.sidebar {
+  transition: all 0.4s ease-in-out;
+}
+
+.effect-hover {
+  transform: translateY(-52%);
+}
+
+.posion {
+  position: relative;
+}
+
+.swap img:last-child {
+  display: none;
+}
+.swap:hover img:first-child {
+  display: none;
+}
+.swap:hover img:last-child {
+  display: inline-block;
+  transition: 0.5s ease-in-out;
+}
