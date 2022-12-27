@@ -186,12 +186,12 @@ function SignUp() {
     const endDigits = number.slice(-3);
     return endDigits.padStart(number.length, "*");
   };
-  useEffect(() => {
-    return () => {
-      // cancel the optbox
-      setopenotpbox(false);
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     // cancel the optbox
+  //     setopenotpbox(false);
+  //   };
+  // }, []);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);

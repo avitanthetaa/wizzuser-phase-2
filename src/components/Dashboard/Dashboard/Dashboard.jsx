@@ -25,14 +25,6 @@ import WithDraw from "../popup/WithDraw";
 import ReferralPopup from "../../Referral/referral popup/ReferralPopup";
 
 function Dashboard({ totlenode }) {
-  console.log("🚀 ~ Dashboard ~ totlenode", totlenode);
-  useEffect(() => {
-    setpopup(true);
-
-    getRewards();
-    getRewardsHistory();
-  }, []);
-
   const [open, setopen] = useState(false);
 
   const [openReferral, setOpenReferral] = useState(false);
@@ -57,20 +49,23 @@ function Dashboard({ totlenode }) {
   const [rewardsHistory, setRewardsHistory] = useState([]);
   const getDetelis = decryptData(localStorage.getItem("quantity"));
   const getdata = decryptData(localStorage.getItem("details"));
-  // console.log("🚀 ~ getdata", getdata);
 
   const [walletAddress, setWalletAddress] = useState("");
-  // console.log("🚀 ~ walletAddress", walletAddress);
-
   const [tronbalance, setTronbalance] = useState(0);
-  // console.log("🚀 ~ Dashboard ~ tronbalance", tronbalance);
 
   const [firstTime, setFirstTime] = useState(true);
-  console.log("🚀 ~ Dashboard ~ firstTime", firstTime);
 
   const [loading, setLoading] = useState(true);
 
   //===== openpopp=====
+
+  // useEffect(() => {
+
+  //   setpopup(true);
+
+  //   getRewards();
+  //   getRewardsHistory();
+  // }, [])
 
   const openpopp = () => {
     if (getdata === undefined) {
@@ -81,7 +76,6 @@ function Dashboard({ totlenode }) {
   };
 
   const withdrawTronPopup = (rewards) => {
-    console.log("🚀 ~ withdrawTronPopup ~ rewards", rewards);
     if (getdata === undefined) {
       toast.error("Please authenticate yourself");
     } else {
@@ -245,7 +239,6 @@ function Dashboard({ totlenode }) {
       const result = await instance.get("/rewards");
 
       const results = decryptData(result.data.data);
-      // console.log("🚀 ~ getRewards ~ results", results);
 
       if (results.status) {
         // toast.success(results.message);
@@ -369,7 +362,6 @@ function Dashboard({ totlenode }) {
       });
 
       const results = decryptData(result.data.data);
-      // console.log("🚀 ~ results", results.firstTime);
       setFirstTime(results.firstTime);
 
       if (results.status) {
@@ -398,7 +390,10 @@ function Dashboard({ totlenode }) {
     //   remainingNodes();
     //   effectCalled.current = true;
     // }
+    setpopup(true);
 
+    getRewards();
+    getRewardsHistory();
     gettronweb();
     remainingNodes();
     // openReferralpopup();
@@ -433,42 +428,40 @@ function Dashboard({ totlenode }) {
 
         {/* desktop screen */}
         <div className="px-10 gap-5 lg:grid grid-cols-3 place-content-center mx-auto mt-4 hidden">
-          <div className="nodetype-bg rounded-2xl p-5 flex flex-col justify-between">
-            <div>
-              <p className="text-[#7351FC] text-2xl font-bold text-center">
-                Rewards
-              </p>
+          <div className="nodetype-bg rounded-2xl p-5 grid lg:grid-cols-2 lg:gap-4 gap-10">
+            <div className="flex flex-col justify-between gap-4">
+              <div>
+                <p className="text-[#7351FC] text-xl font-bold text-center">
+                  Hash Rewards
+                </p>
+              </div>
+              <div className="text-3xl text-color font-bold mt-2 text-center">
+                {rewards === undefined ? 0 : rewards}
+                <p className="text-lg">USDT</p>
+              </div>
+              <button
+                onClick={() => withdrawTronPopup(rewards)}
+                className="flex justify-center"
+              >
+                <Button btn={"Withdraw"} tronBalance={tronbalance} />
+              </button>
             </div>
-            <div className="grid lg:grid-cols-2 lg:gap-4 gap-10 place-items-center">
-              <div className="flex flex-col gap-4">
-                <div>
-                  <p className="text-[#7351FC] text-xl font-bold text-center">
-                    Hash Rewards
-                  </p>
-                </div>
-                <div className="text-3xl text-color font-bold mt-2 text-center">
-                  {rewards === undefined ? 0 : rewards}
-                </div>
-                <button onClick={() => withdrawTronPopup(rewards)}>
-                  <Button btn={"Withdraw"} tronBalance={tronbalance} />
-                </button>
+            <div className="flex flex-col justify-between gap-4">
+              <div>
+                <p className="text-[#7351FC] text-xl font-bold text-center">
+                  Referral Rewards
+                </p>
               </div>
-              <div className="flex flex-col gap-4">
-                <div>
-                  <p className="text-[#7351FC] text-xl font-bold text-center">
-                    Referral Rewards
-                  </p>
-                </div>
-                <div className="text-3xl text-color font-bold mt-2 text-center">
-                  {referralRewards === undefined ? 0 : referralRewards}
-                </div>
-                <button
-                  onClick={() => withdrawTronPopup(referralRewards)}
-                  className="text-center"
-                >
-                  <Button btn={"Withdraw"} tronBalance={tronbalance} />
-                </button>
+              <div className="text-3xl text-color font-bold mt-2 text-center">
+                {referralRewards === undefined ? 0 : referralRewards}
+                <p className="text-lg">USDT</p>
               </div>
+              <button
+                onClick={() => withdrawTronPopup(referralRewards)}
+                className="text-center flex justify-center"
+              >
+                <Button btn={"Withdraw"} tronBalance={tronbalance} />
+              </button>
             </div>
 
             {/* 
@@ -534,8 +527,9 @@ function Dashboard({ totlenode }) {
                 </div>
               </div>
 
-              <div className="text-[55px]  font-bold mt-2 text-color">
+              <div className="text-3xl font-bold text-color">
                 {totlenode === undefined ? 0 : totlenode}
+                <p className="text-lg">Hash</p>
               </div>
 
               <Link to="/myNode">
@@ -549,7 +543,7 @@ function Dashboard({ totlenode }) {
               <p className="text-[#7351FC] text-2xl font-bold">
                 Total Deposits
               </p>
-              <div className="text-3xl font-bold mt-2 text-color">
+              <div className="text-3xl font-bold text-color">
                 {totlenode === undefined ? 0 : totlenode * 100}
                 <p className="text-sm">USDT</p>
               </div>
@@ -625,12 +619,7 @@ function Dashboard({ totlenode }) {
           </div>
 
           <div className="nodetype-bg rounded-2xl p-5">
-            <div>
-              <p className="text-[#7351FC] text-2xl font-bold text-center">
-                Rewards
-              </p>
-            </div>
-            <div className="grid lg:grid-cols-2 lg:gap-4 gap-10 mt-10 place-items-center">
+            <div className="grid lg:grid-cols-2 lg:gap-4 gap-10 place-items-center">
               <div className="flex flex-col gap-4">
                 <div>
                   <p className="text-[#7351FC] text-xl font-bold">
@@ -639,6 +628,7 @@ function Dashboard({ totlenode }) {
                 </div>
                 <div className="text-3xl text-color font-bold mt-2 text-center">
                   {rewards === undefined ? 0 : rewards}
+                  <p className="text-lg">USDT</p>
                 </div>
                 <button onClick={withdrawTronPopup}>
                   <Button btn={"Withdraw"} tronBalance={tronbalance} />
@@ -651,7 +641,8 @@ function Dashboard({ totlenode }) {
                   </p>
                 </div>
                 <div className="text-3xl text-color font-bold mt-2 text-center">
-                  {rewards === undefined ? 0 : rewards}
+                  {referralRewards === undefined ? 0 : referralRewards}
+                  <p className="text-lg">USDT</p>
                 </div>
                 <button onClick={withdrawTronPopup}>
                   <Button btn={"Withdraw"} tronBalance={tronbalance} />
@@ -679,33 +670,39 @@ function Dashboard({ totlenode }) {
           </div>
 
           <div className="nodetype-bg rounded-2xl p-5 grid lg:grid-cols-2 gap-y-10">
-            <div className="flex flex-col justify-between text-center">
+            <div className="flex flex-col justify-between text-center gap-4">
               <div>
                 <div>
                   <p className="text-[#7351FC] text-2xl font-bold">My Hash</p>
                 </div>
               </div>
 
-              <div className="text-3xl font-bold mt-2 text-color">
-                {totlenode}
+              <div className="text-2xl font-bold text-color">
+                {totlenode === undefined ? 0 : totlenode}
+                <p className="text-base">Hash</p>
               </div>
 
-              <div className="text-center min-w-max">
+              <div className="text-center min-w-max flex justify-center">
                 <Link to="/myNode">
                   <Button btn={"View Hash"} />
                 </Link>
               </div>
             </div>
 
-            <div className="text-center">
-              <div>
-                <p className="text-[#7351FC] text-2xl font-bold">
-                  Total Deposits
-                </p>
+            <div className="text-center flex flex-col gap-4">
+              <p className="text-[#7351FC] text-2xl font-bold">
+                Total Deposits
+              </p>
 
-                <div className="text-3xl font-bold mt-2 text-color">
-                  {typeof totlenode === NaN ? 0 : totlenode * 100}
-                </div>
+              <div className="text-2xl font-bold text-color">
+                {totlenode === undefined ? 0 : totlenode * 100}
+                <p className="text-sm">USDT</p>
+              </div>
+
+              <div className="text-center flex justify-center min-w-max">
+                <Link to="/myNode">
+                  <Button btn={"View Deposits"} />
+                </Link>
               </div>
             </div>
           </div>

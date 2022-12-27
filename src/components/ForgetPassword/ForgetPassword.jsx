@@ -47,7 +47,7 @@ function ForgetPassword() {
       });
 
       const results = decryptData(result.data.data);
-      // // console.log(results);
+
       if (results.status) {
         toast.success(results.message);
         setopenotpbox(true);
@@ -56,12 +56,13 @@ function ForgetPassword() {
       }
     } catch (err) {}
   };
-  useEffect(() => {
-    return () => {
-      // cancel the optbox
-      setopenotpbox(false);
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     // cancel the optbox
+  //     setopenotpbox(false);
+  //   };
+  // }, []);
+
   return (
     <>
       {openotpbox ? (

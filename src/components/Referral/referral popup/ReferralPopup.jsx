@@ -35,7 +35,7 @@ const ReferralPopup = ({ show }) => {
       });
 
       const results = decryptData(result.data.data);
-      console.log("🚀 ~ results", results);
+
 
       if (results.status) {
         toast.success(results.message);
@@ -48,7 +48,6 @@ const ReferralPopup = ({ show }) => {
   };
 
   const { search } = useLocation();
-  console.log("🚀 ~ ReferralPopup ~ search", search?.split("=")[1]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import emailuser from "../img/email.png";
 import passworduser from "../img/password.png";
 import closeeye from "../img/hiddenEye.png";
@@ -57,7 +57,6 @@ function Login() {
 
       localStorage.setItem("details", result.data.data);
       const results = decryptData(result.data.data);
-      // console.log(results);
 
       if (results.status) {
         toast.success(results.message);

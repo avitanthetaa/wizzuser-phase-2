@@ -46,19 +46,20 @@ function OTP({ email, route }) {
     []
   );
 
-  useEffect(() => {
-    return () => {
-      // cancel the optbox
-      setopenotpbox(false);
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     // cancel the optbox
+  //     setopenotpbox(false);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    timer();
-    return () => {
-      clearInterval(timer);
-    };
-  }, [timer]);
+  // useEffect(() => {
+  //   timer();
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // }, [timer]);
+
   /*=======ERROR MESSAGE =========*/
   let errorsObj = {
     otperror: "",
@@ -99,7 +100,7 @@ function OTP({ email, route }) {
 
       localStorage.setItem("details", result.data.data);
       const results = decryptData(result.data.data);
-      // // console.log(results);
+
       if (results.status) {
         toast.success(results.message);
         setopenotpbox(route === "/forgetpassword" ? true : false);

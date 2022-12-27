@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Button from "../Button/Button";
 import wizzlogo from "../img/wizz-logo.png";
 import { Link, useLocation } from "react-router-dom";
@@ -31,11 +31,10 @@ function Logo() {
             data: encrypt,
           });
 
-          // console.log("🚀 ~ result", result.data);
           localStorage.setItem("details", result.data.data);
 
           const results = decryptData(result.data.data);
-          // console.log("🚀 ~ results", results);
+
           localStorage.setItem("firstTime", results.firstTime);
 
           if (results.status) {
@@ -53,7 +52,6 @@ function Logo() {
   }
 
   const getWallet = localStorage.getItem("wallet");
-  console.log("🚀 ~ getWallet", getWallet);
 
   window.onbeforeunload = function (e) {
     window.onunload = function () {

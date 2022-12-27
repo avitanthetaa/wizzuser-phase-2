@@ -7,7 +7,6 @@ import MainTitle from "../MainTitle/MainTitle";
 import toast from "react-hot-toast";
 
 function Profile({ totlenode }) {
-  // // console.log(totlenode);
   const navigate = useNavigate();
   const { encryptData, decryptData } = useEncryption();
   const getdata = decryptData(localStorage.getItem("details"));

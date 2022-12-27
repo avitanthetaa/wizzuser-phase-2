@@ -12,7 +12,6 @@ function Referral() {
   const getDetelis = decryptData(localStorage.getItem("details"));
   const effectCalled = useRef(false);
   const [referaalleval1, setreferaalleval1] = useState([]);
-  console.log("🚀 ~ referaalleval1", referaalleval1);
   const [referred, setreferred] = useState([{}]);
 
   const [open, setopen] = useState(false);
@@ -27,8 +26,8 @@ function Referral() {
     try {
       const result = await instance.get("/getAllChild");
       const results = decryptData(result.data.data);
-      // console.log("🚀 ~ results", results);
-      // // console.log(results.data);
+  
+
       if (results.status) {
         setreferaalleval1(results.data);
         // toast.success(results.message);
@@ -44,7 +43,7 @@ function Referral() {
     try {
       const result = await instance.get("/getAllSubChild");
       const results = decryptData(result.data.data);
-      // // console.log(results.data);
+     
       if (results.status) {
         setreferred(results.data);
 
@@ -53,8 +52,7 @@ function Referral() {
         // toast.error(results.message);
       }
     } catch (err) {}
-  };
-  // // console.log(referred);
+  }
 
   useEffect(() => {
     getAllchild();

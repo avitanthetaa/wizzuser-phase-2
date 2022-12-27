@@ -6,14 +6,12 @@ import toast from "react-hot-toast";
 
 function Trading() {
   const [isReward, setIsReward] = useState([]);
-  console.log("🚀 ~ file: Trading.jsx ~ line 9 ~ Trading ~ isReward", isReward);
   const { encryptData, decryptData } = useEncryption();
 
   const Rewards = async () => {
     try {
       const result = await instance.get("/rewardsHistory");
       // const localData = localStorage.getItem("details", result.data.data)
-      // console.log("🚀 ~ file: Trading.jsx ~ line 13 ~ Rewards ~ localData", localData)
 
       const results = decryptData(result.data.data);
 

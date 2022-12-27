@@ -43,13 +43,11 @@ function App() {
   // ============== totalNodes API =========
 
   const [totalHashValue, setTotalHashValue] = useState(0);
-  console.log("🚀 ~ App ~ totalHashValue", totalHashValue)
 
   const totalHash = async () => {
     try {
       const result = await instance.get("/totalNodes");
       const results = decryptData(result.data.data);
-      console.log("🚀 ~ results", results);
 
       setTotalHashValue(results.data.total);
     } catch (err) {}

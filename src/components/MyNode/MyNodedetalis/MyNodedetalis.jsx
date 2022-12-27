@@ -36,16 +36,28 @@ function MyNodedetalis({ totlenode }) {
           <MainTitle title={"Total Hash"} />
         </div>
         <div className="flex lg:flex-row flex-col justify-between items-center py-6 mt-3 bg-[#DFE5FF] rounded-xl px-10  nodetype-bg">
-          <div className="">
+          <div className="flex flex-col justify-between gap-4">
+            {/*
             <p className="text-[40px] text-[#7351FC] font-extrabold">My Hash</p>
             <p className="text-[91px] text-color text-center lg:text-start">
+              {totlenode === undefined ? 0 : totlenode}
+            </p>
+            <p className="text-color border-t-2 py-4 border-white">
+              
+            </p>
+          */}
+
+            <p className="md:text-[40px] text-3xl text-[#7351FC] font-extrabold lg:text-end text-center">
+              My Hash
+            </p>
+            <p className="text-4xl text-color lg:text-start text-center">
               {totlenode === undefined ? 0 : totlenode}
             </p>
             <p className="text-color border-t-2 py-4 border-white">
               {/* Total Average Tax 0% */}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col justify-between gap-4">
             {/* 
           <div className="flex justify-center items-center  gap-5 mt-2 ">
               {claim?.map((index, key) => (
@@ -70,12 +82,12 @@ function MyNodedetalis({ totlenode }) {
             </div>
         */}
 
-            <p className="text-[40px] text-[#7351FC] font-extrabold">
+            <p className="md:text-[40px] text-2xl text-[#7351FC] font-extrabold lg:text-end text-center">
               My Deposits
             </p>
-            <p className="text-4xl text-color text-end">
+            <p className="text-4xl text-color lg:text-end text-center">
               {totlenode === undefined ? 0 : totlenode * 100}
-              <p className="text-lg">USDT</p>
+              <p className="text-sm">USDT</p>
             </p>
             <p className="text-color border-t-2 py-4 border-white">
               {/* Total Average Tax 0% */}
