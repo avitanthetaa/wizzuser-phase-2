@@ -36,11 +36,11 @@ function CommingSoon({ setpopup }) {
   };
 
   useEffect(() => {
-    StartTimer();
-    return () => {
-      //eslint-disable-next-line
-      clearInterval(interval.current);
-    };
+    // StartTimer();
+    // return () => {
+    //   //eslint-disable-next-line
+    //   clearInterval(interval.current);
+    // };
   });
 
   return (

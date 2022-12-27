@@ -174,9 +174,10 @@ function SignUp() {
       if (results.status) {
         toast.success(results.message);
         setopenotpbox(true);
-      } else {
-        toast.error(results.message);
-      }
+      } 
+      // else {
+      //   toast.error(results.message);
+      // }
     } catch (err) {
       ////console.log("err" + err);
     }

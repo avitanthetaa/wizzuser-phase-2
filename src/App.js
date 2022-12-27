@@ -31,6 +31,7 @@ function App() {
   const [totlenode, settotlenode] = useState();
   const location = useLocation();
   const { pathname } = location;
+  const [loadingDashboard, setLoadingDashboard] = useState(true);
 
   // useEffect(() => {
   //   if (getdata?.data?.token === undefined) {
@@ -50,6 +51,7 @@ function App() {
       const results = decryptData(result.data.data);
 
       setTotalHashValue(results.data.total);
+      setLoadingDashboard(false);
     } catch (err) {}
 
     // "tronweb": "^4.4.0",

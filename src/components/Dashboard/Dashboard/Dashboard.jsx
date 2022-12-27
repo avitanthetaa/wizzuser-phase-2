@@ -23,6 +23,7 @@ import CommingSoon from "../CommingSoon/CommingSoon";
 
 import WithDraw from "../popup/WithDraw";
 import ReferralPopup from "../../Referral/referral popup/ReferralPopup";
+import WithdrawReferral from "../popup/WithdrawReferral";
 
 function Dashboard({ totlenode }) {
   const [open, setopen] = useState(false);
@@ -30,6 +31,8 @@ function Dashboard({ totlenode }) {
   const [openReferral, setOpenReferral] = useState(false);
 
   const [openWithdrawPopup, setOpenWithdrawPopup] = useState(false);
+  const [openWithdrawReferralPopup, setOpenWithdrawReferralPopup] =
+    useState(false);
 
   const [drop, setdrop] = useState(false);
   const [transaction, settransaction] = useState();
@@ -56,6 +59,21 @@ function Dashboard({ totlenode }) {
   const [firstTime, setFirstTime] = useState(true);
 
   const [loading, setLoading] = useState(true);
+  const [appLoading, setAppLoading] = useState(true);
+
+  // const [totalHashValue, setTotalHashValue] = useState(0);
+  // console.log("🚀 ~ Dashboard ~ totalHashValue", totalHashValue);
+
+  // const totalHash = async () => {
+  //   try {
+  //     const result = await instance.get("/totalNodes");
+  //     const results = decryptData(result.data.data);
+
+  //     setTotalHashValue(results.data.total);
+  //   } catch (err) {}
+
+  //   // "tronweb": "^4.4.0",
+  // };
 
   //===== openpopp=====
 
@@ -75,12 +93,24 @@ function Dashboard({ totlenode }) {
     }
   };
 
-  const withdrawTronPopup = (rewards) => {
+  const withdrawTronPopup = () => {
     if (getdata === undefined) {
       toast.error("Please authenticate yourself");
     } else {
       if (rewards > 20) {
         setOpenWithdrawPopup(true);
+      } else {
+        toast.error("You don't have enough rewards for withdraw");
+      }
+    }
+  };
+
+  const withdrawTronReferralPopup = () => {
+    if (getdata === undefined) {
+      toast.error("Please authenticate yourself");
+    } else {
+      if (referralRewards > 20) {
+        setOpenWithdrawReferralPopup(true);
       } else {
         toast.error("You don't have enough rewards for withdraw");
       }
@@ -195,40 +225,40 @@ function Dashboard({ totlenode }) {
 
       if (results.status) {
         gettronweb();
-      } else {
-        toast.error(results.message);
       }
+      //  else {
+      //   toast.error(results.message);
+      // }
     } catch (err) {}
   };
 
-  var obj = async () => {
-    if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+  var transactionTron = async () => {
+    if (window?.tronWeb && window?.tronWeb?.defaultAddress?.base58) {
       //if (window.tronLink.tronWeb)
 
-      var tronweb = window.tronWeb;
-      var tx = await tronweb.transactionBuilder.sendTrx(
-        "TBZKUeyykEy8FD3BGDREQmvniUHqRgt1bJ",
+      var tronweb = window?.tronWeb;
+      var tx = await tronweb?.transactionBuilder?.sendTrx(
+        "TDHmqggeSDTsxmS55uEKvVH5KJCDwCFMv7",
         value * 10 ** 6,
         walletAddress
       );
-      var signedTx = await tronweb.trx.sign(tx);
-      var broastTx = await tronweb.trx.sendRawTransaction(signedTx);
+      var signedTx = await tronweb?.trx?.sign(tx);
+      var broastTx = await tronweb?.trx?.sendRawTransaction(signedTx);
       console.log(broastTx);
 
       if (broastTx.result) {
         toast.success(`Transaction of ${value} tron is successful.`);
         setopen(false);
       }
-
       txnData();
     }
   };
 
-  const payTron = () => {
+  const payTron = async () => {
     if (getdata?.data?.token === undefined) {
       toast.error(getdata?.message);
     } else {
-      obj();
+      await transactionTron();
     }
   };
 
@@ -245,6 +275,7 @@ function Dashboard({ totlenode }) {
         setRewards(results?.data?.userData?.rewards);
         setReferralRewards(results?.data?.userData?.referralRewards);
         setTronbalance(results.balance);
+        setAppLoading(false);
       }
       // else {
       //   toast.error(results.message);
@@ -280,9 +311,11 @@ function Dashboard({ totlenode }) {
       if (results.status) {
         // toast.success(results.message);
         setbusdprice(results.data.price);
-      } else {
-        toast.error(results.message);
+        setAppLoading(false);
       }
+      // else {
+      //   toast.error(results.message);
+      // }
     } catch (err) {}
   };
 
@@ -297,9 +330,10 @@ function Dashboard({ totlenode }) {
       if (results.status) {
         // toast.success(results.message);
         setRewardsHistory(results.history);
-      } else {
-        toast.error(results.message);
       }
+      // else {
+      //   toast.error(results.message);
+      // }
     } catch (err) {}
   };
 
@@ -313,9 +347,10 @@ function Dashboard({ totlenode }) {
 
       if (results.status) {
         settotalremaining(results.data);
-      } else {
-        toast.error(results.message);
       }
+      // else {
+      //   toast.error(results.message);
+      // }
     } catch (err) {}
   };
 
@@ -336,9 +371,10 @@ function Dashboard({ totlenode }) {
 
       if (results.status) {
         toast.success(results.message);
-      } else {
-        toast.error(results.message);
       }
+      // else {
+      //   toast.error(results.message);
+      // }
     } catch (err) {}
   };
 
@@ -367,9 +403,10 @@ function Dashboard({ totlenode }) {
       if (results.status) {
         setLoading(false);
         toast.success(results.message);
-      } else {
-        toast.error(results.message);
       }
+      // else {
+      //   toast.error(results.message);
+      // }
     } catch (err) {
       ////console.log("err" + err);
     }
@@ -391,10 +428,8 @@ function Dashboard({ totlenode }) {
     //   effectCalled.current = true;
     // }
     setpopup(true);
-
     getRewards();
     getRewardsHistory();
-    gettronweb();
     remainingNodes();
     // openReferralpopup();
     getUserFirstTime();
@@ -412,6 +447,16 @@ function Dashboard({ totlenode }) {
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} />
+
+      
+
+      {openWithdrawReferralPopup && (
+        <WithdrawReferral
+          show={() => setOpenWithdrawReferralPopup()}
+          rewards={referralRewards}
+          tronBalance={tronbalance}
+        />
+      )}
 
       {loading ? (
         <span></span>
@@ -439,12 +484,12 @@ function Dashboard({ totlenode }) {
                 {rewards === undefined ? 0 : rewards}
                 <p className="text-lg">USDT</p>
               </div>
-              <button
-                onClick={() => withdrawTronPopup(rewards)}
-                className="flex justify-center"
+              <div
+                onClick={() => withdrawTronPopup()}
+                className="flex justify-center items-center"
               >
                 <Button btn={"Withdraw"} tronBalance={tronbalance} />
-              </button>
+              </div>
             </div>
             <div className="flex flex-col justify-between gap-4">
               <div>
@@ -456,31 +501,31 @@ function Dashboard({ totlenode }) {
                 {referralRewards === undefined ? 0 : referralRewards}
                 <p className="text-lg">USDT</p>
               </div>
-              <button
-                onClick={() => withdrawTronPopup(referralRewards)}
+              <div
+                onClick={() => withdrawTronReferralPopup()}
                 className="text-center flex justify-center"
               >
                 <Button btn={"Withdraw"} tronBalance={tronbalance} />
-              </button>
+              </div>
             </div>
 
             {/* 
-          <div className="flex justify-start items-center gap-5 mt-2">
-            {claim?.map((index, key) => (
-              <div>
-                <div className="Rewards rounded-lg" key={key}>
-                  <div
-                    className="   p-4 gap-5 flex justify-center items-center flex-col"
-                    key={index.id}
-                  >
-                    <img src={index.img} alt="" className="w-8 h-8" />
-                    <p className="rewardstextcolor text-xl">{rewards}</p>
-                  </div>
+        <div className="flex justify-start items-center gap-5 mt-2">
+          {claim?.map((index, key) => (
+            <div>
+              <div className="Rewards rounded-lg" key={key}>
+                <div
+                  className="   p-4 gap-5 flex justify-center items-center flex-col"
+                  key={index.id}
+                >
+                  <img src={index.img} alt="" className="w-8 h-8" />
+                  <p className="rewardstextcolor text-xl">{rewards}</p>
                 </div>
               </div>
-            ))}
-          </div>
-        */}
+            </div>
+          ))}
+        </div>
+      */}
           </div>
           <div className="nodetype-bg flex flex-col gap-5 justify-between p-5 items-center rounded-2xl ">
             <div>
@@ -556,22 +601,22 @@ function Dashboard({ totlenode }) {
             </div>
 
             {/*
-            <div className="flex justify-start items-center gap-5 mt-2">
-              {mynode?.map((index) => (
-                <Fragment>
-                  <div className="Rewards rounded-lg ">
-                    <div
-                      className="  p-4 gap-5 flex justify-center items-center flex-col"
-                      key={index.id}
-                    >
-                      <img src={index.img} alt="" className="w-8 h-8" />
-                      <p className="rewardstextcolor text-xl">{index.card}</p>
-                    </div>
+          <div className="flex justify-start items-center gap-5 mt-2">
+            {mynode?.map((index) => (
+              <Fragment>
+                <div className="Rewards rounded-lg ">
+                  <div
+                    className="  p-4 gap-5 flex justify-center items-center flex-col"
+                    key={index.id}
+                  >
+                    <img src={index.img} alt="" className="w-8 h-8" />
+                    <p className="rewardstextcolor text-xl">{index.card}</p>
                   </div>
-                </Fragment>
-              ))}
-            </div>
-           */}
+                </div>
+              </Fragment>
+            ))}
+          </div>
+         */}
           </div>
         </div>
 
@@ -651,22 +696,22 @@ function Dashboard({ totlenode }) {
             </div>
 
             {/* 
-            <div className="flex justify-start items-center gap-5 mt-2">
-              {claim?.map((index, key) => (
-                <div>
-                  <div className="Rewards rounded-lg" key={key}>
-                    <div
-                      className="   p-4 gap-5 flex justify-center items-center flex-col"
-                      key={index.id}
-                    >
-                      <img src={index.img} alt="" className="w-8 h-8" />
-                      <p className="rewardstextcolor text-xl">{rewards}</p>
-                    </div>
+          <div className="flex justify-start items-center gap-5 mt-2">
+            {claim?.map((index, key) => (
+              <div>
+                <div className="Rewards rounded-lg" key={key}>
+                  <div
+                    className="   p-4 gap-5 flex justify-center items-center flex-col"
+                    key={index.id}
+                  >
+                    <img src={index.img} alt="" className="w-8 h-8" />
+                    <p className="rewardstextcolor text-xl">{rewards}</p>
                   </div>
                 </div>
-              ))}
-            </div>
-          */}
+              </div>
+            ))}
+          </div>
+        */}
           </div>
 
           <div className="nodetype-bg rounded-2xl p-5 grid lg:grid-cols-2 gap-y-10">
@@ -709,110 +754,110 @@ function Dashboard({ totlenode }) {
         </div>
 
         {/*
-        <div className=" xl:hidden nodetype-bg rounded-2xl flex justify-center px-5">
-        <Slider {...settings}>
-          <div className="py-14">
-            <div className="flex md:flex-row flex-col gap-2 justify-between items-center">
-              <div>
-                <p className="text-[#7351FC] text-2xl font-bold text-center">
-                  Earning Rewards
-                </p>
-              </div>
-            <Link to="/investments">
-                <Button btn={"Withdraw"} />
-              </Link> 
+      <div className=" xl:hidden nodetype-bg rounded-2xl flex justify-center px-5">
+      <Slider {...settings}>
+        <div className="py-14">
+          <div className="flex md:flex-row flex-col gap-2 justify-between items-center">
+            <div>
+              <p className="text-[#7351FC] text-2xl font-bold text-center">
+                Earning Rewards
+              </p>
+            </div>
+          <Link to="/investments">
+              <Button btn={"Withdraw"} />
+            </Link> 
 
-              <button onClick={withdrawTronPopup}>
-                <Button btn={"Withdraw"} tronBalance={tronbalance} />
-              </button>
-            </div>
-            <div className="md:text-[55px] text-[40px] text-center md:text-start text-color font-bold  ">
-              <p>{rewards}</p>
-            </div>
-            <div className="flex justify-center md:justify-start flex-wrap items-center gap-5 mt-2">
-              {claim?.map((index, key) => (
-                <>
-                  <div className="Rewards rounded-lg ">
-                    <div
-                      className="  md:p-5  p-2 gap-5 flex justify-center items-center flex-col"
-                      key={index.id}
-                    >
-                      <img src={index.img} alt="" className="w-8 h-8" />
-                      <p className="rewardstextcolor text-xl">{rewards}</p>
-                    </div>
-                  </div>
-                </>
-              ))}
-            </div>
+            <button onClick={withdrawTronPopup}>
+              <Button btn={"Withdraw"} tronBalance={tronbalance} />
+            </button>
           </div>
-          <div className="py-14 flex  ">
-            <div className="flex flex-col justify-between items-center gap-10">
-        
-              <div clas>
-                <p className="text-[#7351FC] text-2xl font-bold">
-                  Mining Hash Rate
-                </p>
-              </div>
-              <table className="w-full  md:text-center">
-                <thead className="text-[#7351FC] md:text-lg text-[11px] md:font-bold">
-                  <tr>
-                    <th scope="col">1 Hash Price</th>
-                    <th scope="col">Daily ROI</th>
-                    <th scope="col">Min. Withdrawl</th>
+          <div className="md:text-[55px] text-[40px] text-center md:text-start text-color font-bold  ">
+            <p>{rewards}</p>
+          </div>
+          <div className="flex justify-center md:justify-start flex-wrap items-center gap-5 mt-2">
+            {claim?.map((index, key) => (
+              <>
+                <div className="Rewards rounded-lg ">
+                  <div
+                    className="  md:p-5  p-2 gap-5 flex justify-center items-center flex-col"
+                    key={index.id}
+                  >
+                    <img src={index.img} alt="" className="w-8 h-8" />
+                    <p className="rewardstextcolor text-xl">{rewards}</p>
+                  </div>
+                </div>
+              </>
+            ))}
+          </div>
+        </div>
+        <div className="py-14 flex  ">
+          <div className="flex flex-col justify-between items-center gap-10">
+      
+            <div clas>
+              <p className="text-[#7351FC] text-2xl font-bold">
+                Mining Hash Rate
+              </p>
+            </div>
+            <table className="w-full  md:text-center">
+              <thead className="text-[#7351FC] md:text-lg text-[11px] md:font-bold">
+                <tr>
+                  <th scope="col">1 Hash Price</th>
+                  <th scope="col">Daily ROI</th>
+                  <th scope="col">Min. Withdrawl</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Buy?.map((items, key) => (
+                  <tr key={items.id}>
+                    <td className="py-3 px-3 text-color text-base font-bold ">
+                      {items.node} BUSD
+                    </td>
+                    <td className="py-3 px-3 text-color text-base font-bold">
+                      {items.CurrentPrice}
+                    </td>
+                    <td className="py-3 px-3 text-color text-base font-bold ">
+                      {items.TotalNodes}
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {Buy?.map((items, key) => (
-                    <tr key={items.id}>
-                      <td className="py-3 px-3 text-color text-base font-bold ">
-                        {items.node} BUSD
-                      </td>
-                      <td className="py-3 px-3 text-color text-base font-bold">
-                        {items.CurrentPrice}
-                      </td>
-                      <td className="py-3 px-3 text-color text-base font-bold ">
-                        {items.TotalNodes}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <div className="flex justify-center" onClick={openpopp}>
-                <Button btn={"Deposit Hash"} />
-              </div>
+                ))}
+              </tbody>
+            </table>
+            <div className="flex justify-center" onClick={openpopp}>
+              <Button btn={"Deposit Hash"} />
             </div>
           </div>
-          <div className="py-14">
-            <div className="flex md:flex-row flex-col gap-2 justify-between items-center">
-              <div>
-                <p className="text-[#7351FC] text-2xl font-bold">My Hash</p>
-              </div>
-              <Link to="/myNode">
-                <Button btn={"View Hash"} />
-              </Link>
+        </div>
+        <div className="py-14">
+          <div className="flex md:flex-row flex-col gap-2 justify-between items-center">
+            <div>
+              <p className="text-[#7351FC] text-2xl font-bold">My Hash</p>
             </div>
-            <div className="golden md:text-[55px] text-[40px] text-center md:text-start text-color font-bold  ">
-              <p>{totlenode}</p>
-            </div>
-            <div className="flex justify-center md:justify-start flex-wrap items-center gap-5 mt-2">
-              {mynode?.map((index, key) => (
-                <>
-                  <div className="Rewards rounded-lg ">
-                    <div
-                      className="  rounded-lg md:p-5  p-2 gap-5 flex justify-center items-center flex-col"
-                      key={index.id}
-                    >
-                      <img src={index.img} alt="" className="w-8 h-8" />
-                      <p className="rewardstextcolor text-xl">{index.card}</p>
-                    </div>
+            <Link to="/myNode">
+              <Button btn={"View Hash"} />
+            </Link>
+          </div>
+          <div className="golden md:text-[55px] text-[40px] text-center md:text-start text-color font-bold  ">
+            <p>{totlenode}</p>
+          </div>
+          <div className="flex justify-center md:justify-start flex-wrap items-center gap-5 mt-2">
+            {mynode?.map((index, key) => (
+              <>
+                <div className="Rewards rounded-lg ">
+                  <div
+                    className="  rounded-lg md:p-5  p-2 gap-5 flex justify-center items-center flex-col"
+                    key={index.id}
+                  >
+                    <img src={index.img} alt="" className="w-8 h-8" />
+                    <p className="rewardstextcolor text-xl">{index.card}</p>
                   </div>
-                </>
-              ))}
-            </div>
+                </div>
+              </>
+            ))}
           </div>
-        </Slider>
-      </div>
-       */}
+        </div>
+      </Slider>
+    </div>
+     */}
 
         {open && (
           <div
@@ -833,10 +878,10 @@ function Dashboard({ totlenode }) {
                       <div className="flex cursor-pointer  justify-between items-center  rounded-md border bg-[#CFD6FE] text-[#515151] px-4 py-3 text-sm font-medium  shadow-sm  focus:outline-none ">
                         {/* */}
                         {/* {mark === 0 ? (
-                          <p className="text-base text-black">
-                            Select Payment Method
-                          </p>
-                        ) : ( */}
+                        <p className="text-base text-black">
+                          Select Payment Method
+                        </p>
+                      ) : ( */}
                         <div className="flex gap-5 justify-center items-center text-lg font-bold">
                           <img src={tronImg} alt="" className="w-10 h-8" />
                           <p>TRON (USDT-TRC20)</p>
@@ -846,48 +891,48 @@ function Dashboard({ totlenode }) {
                       </div>
                     </div>
                     {/* {drop && (
-                      <div className="absolute right-0 left-0 z-10 mt-2 cursor-pointer  rounded-md bg-[#CFD6FE] text-[#515151] shadow-lg ">
-                        <div role="none">
-                          {wallet?.map((i) => (
-                            <div
-                              className="flex justify-between items-center px-4 py-3   "
-                              key={i.id}
-                              onClick={() => setmark(i)}
-                            >
-                              <div className=" flex justify-start items-center gap-4">
-                                <div>
-                                  <img
-                                    src={i.img}
-                                    alt=""
-                                    className="w-10 h-8"
-                                  />
-                                </div>
-                                <div>
-                                  <p className=" font-semibold">
-                                    {i.walletname}
-                                  </p>
-                                  <p>Balance : {i.balance}</p>
-                                </div>
+                    <div className="absolute right-0 left-0 z-10 mt-2 cursor-pointer  rounded-md bg-[#CFD6FE] text-[#515151] shadow-lg ">
+                      <div role="none">
+                        {wallet?.map((i) => (
+                          <div
+                            className="flex justify-between items-center px-4 py-3   "
+                            key={i.id}
+                            onClick={() => setmark(i)}
+                          >
+                            <div className=" flex justify-start items-center gap-4">
+                              <div>
+                                <img
+                                  src={i.img}
+                                  alt=""
+                                  className="w-10 h-8"
+                                />
                               </div>
                               <div>
-                                {mark.id === i.id ? (
-                                  <i className="fa-solid fa-check text-[#24AF0D]"></i>
-                                ) : null}
+                                <p className=" font-semibold">
+                                  {i.walletname}
+                                </p>
+                                <p>Balance : {i.balance}</p>
                               </div>
                             </div>
-                          ))}
-                        </div>
+                            <div>
+                              {mark.id === i.id ? (
+                                <i className="fa-solid fa-check text-[#24AF0D]"></i>
+                              ) : null}
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    )} */}
+                    </div>
+                  )} */}
                   </div>
                 </>
                 {/* <div className="flex justify-center py-5">
-                  <img
-                    src={smartnode}
-                    alt=""
-                    className="md:w-44 w-32 lg:w-fit"
-                  />
-                </div> */}
+                <img
+                  src={smartnode}
+                  alt=""
+                  className="md:w-44 w-32 lg:w-fit"
+                />
+              </div> */}
                 <div className="mt-10">
                   <label className="text-[white] text-xl font-bold leading-tight tracking-normal ">
                     Total Cost:
@@ -910,15 +955,15 @@ function Dashboard({ totlenode }) {
                   </p>
                 </div>
                 {/* <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <label className="text-[white] text-2xl font-bold leading-tight tracking-normal">
-                      Drop Schedule :
-                    </label>
-                  </div>
-                  <div className="rounded-md bg-[#DCE0FF] p-2">
-                    <p>TIER 1 of 25</p>
-                  </div>
-                </div> */}
+                <div className="flex items-center gap-2">
+                  <label className="text-[white] text-2xl font-bold leading-tight tracking-normal">
+                    Drop Schedule :
+                  </label>
+                </div>
+                <div className="rounded-md bg-[#DCE0FF] p-2">
+                  <p>TIER 1 of 25</p>
+                </div>
+              </div> */}
                 <div className="mt-10 text-center rounded-md bg-[#97A5FC] p-3">
                   <p className="text-[black] text-xl font-bold leading-tight tracking-normal">
                     {totalremaining?.smart} / {totalsupply?.master} Remain

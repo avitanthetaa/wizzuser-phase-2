@@ -39,9 +39,10 @@ const ReferralPopup = ({ show }) => {
 
       if (results.status) {
         toast.success(results.message);
-      } else {
-        toast.error(results.message);
-      }
+      } 
+      // else {
+      //   toast.error(results.message);
+      // }
     } catch (err) {}
 
     navigate("/");

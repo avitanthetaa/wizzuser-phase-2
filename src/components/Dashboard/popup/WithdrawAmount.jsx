@@ -1,4 +1,4 @@
-const WithdrawAmount = ({ value, show }) => {
+const WithdrawAmount = ({ value, show, loading }) => {
   return (
     <>
       <div className="text-white text-center relative py-8 px-5 md:px-10 nodetype-bg border-[#14206A] border-2 rounded-3xl -3xl">
@@ -15,4 +15,5 @@ const WithdrawAmount = ({ value, show }) => {
     </>
   );
 };
+
 export default WithdrawAmount;

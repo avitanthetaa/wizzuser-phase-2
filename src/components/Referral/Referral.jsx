@@ -26,7 +26,6 @@ function Referral() {
     try {
       const result = await instance.get("/getAllChild");
       const results = decryptData(result.data.data);
-  
 
       if (results.status) {
         setreferaalleval1(results.data);
@@ -43,7 +42,7 @@ function Referral() {
     try {
       const result = await instance.get("/getAllSubChild");
       const results = decryptData(result.data.data);
-     
+
       if (results.status) {
         setreferred(results.data);
 
@@ -52,7 +51,7 @@ function Referral() {
         // toast.error(results.message);
       }
     } catch (err) {}
-  }
+  };
 
   useEffect(() => {
     getAllchild();
@@ -65,7 +64,13 @@ function Referral() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const refferalCode = window?.tronWeb?.defaultAddress?.base58?.slice(-6);
+  const walletSlice = window?.tronWeb?.defaultAddress?.base58;
+
+  localStorage.setItem("walletSlice", walletSlice);
+
+  const walletCode = localStorage.getItem("walletSlice");
+
+  const refferalCode = walletCode?.slice(-6);
 
   return (
     <div className=" container  mx-auto md:px-10 mt-5 px-5">

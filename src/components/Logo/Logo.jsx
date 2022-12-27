@@ -13,7 +13,7 @@ function Logo() {
   const [walletAddress, setWalletAddress] = useState("");
 
   async function connectWallet() {
-    await window.tronWeb.transactionBuilder;
+    await window?.tronWeb?.transactionBuilder;
 
     if (window.tronWeb.transactionBuilder) {
       if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
@@ -34,8 +34,6 @@ function Logo() {
           localStorage.setItem("details", result.data.data);
 
           const results = decryptData(result.data.data);
-
-          localStorage.setItem("firstTime", results.firstTime);
 
           if (results.status) {
             toast.success(results.message);

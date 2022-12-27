@@ -7,7 +7,9 @@ import instance from "../../BaseUrl/BaseUrl";
 import toast, { Toaster } from "react-hot-toast";
 import WithdrawAmount from "./WithdrawAmount";
 
-const WithDraw = ({ show, rewards, tronBalance }) => {
+const WithdrawReferral = ({ show, rewards, tronBalance }) => {
+  console.log("🚀 ~ WithdrawReferral ~ tronBalance", tronBalance);
+  console.log("🚀 ~ WithDraw ~ rewards", rewards);
   const [value, setValue] = useState(20);
   const [store, setStore] = useState([]);
   const [error, setError] = useState("");
@@ -58,7 +60,7 @@ const WithDraw = ({ show, rewards, tronBalance }) => {
         })
       );
 
-      const result = await instance.post("/withdraw", {
+      const result = await instance.post("/referralWithdraw", {
         data: encrypt,
       });
 
@@ -86,7 +88,7 @@ const WithDraw = ({ show, rewards, tronBalance }) => {
         })
       );
 
-      const result = await instance.post("/withdraw", {
+      const result = await instance.post("/referralWithdraw", {
         data: encrypt,
       });
 
@@ -106,7 +108,6 @@ const WithDraw = ({ show, rewards, tronBalance }) => {
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} />
-
       <div
         className="py-3  z-50 flex justify-center items-center mx-auto fixed top-0 right-0 bottom-0 left-0 backdrop-blur"
         id="modal"
@@ -193,6 +194,8 @@ const WithDraw = ({ show, rewards, tronBalance }) => {
               )
             : null}
 
+          {loading ? <div></div> : null}
+
           {loadingWithdraw ? (
             <WithdrawAmount
               value={value}
@@ -200,16 +203,10 @@ const WithDraw = ({ show, rewards, tronBalance }) => {
               loading={() => setLoading()}
             />
           ) : null}
-
-          {loading ? (
-            <div className="text-center flex justify-center">
-              <div className="hm-spinner"></div>
-            </div>
-          ) : null}
         </div>
       </div>
     </>
   );
 };
 
-export default WithDraw;
+export default WithdrawReferral;
