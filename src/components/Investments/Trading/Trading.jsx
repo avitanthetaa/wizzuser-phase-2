@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 
 function Trading() {
   const [isReward, setIsReward] = useState([]);
+  console.log("🚀 ~ Trading ~ isReward", isReward);
   const { encryptData, decryptData } = useEncryption();
 
   const Rewards = async () => {
@@ -14,6 +15,7 @@ function Trading() {
       // const localData = localStorage.getItem("details", result.data.data)
 
       const results = decryptData(result.data.data);
+      console.log("🚀 ~ Rewards ~ results", results);
 
       setIsReward(results.history);
 
@@ -42,7 +44,7 @@ function Trading() {
               <th scope="col">Rewards</th>
             </tr>
           </thead>
-          {isReward.length === 0 ? (
+          {isReward?.length === 0 ? (
             <tbody>
               <>
                 <tr>
@@ -56,6 +58,7 @@ function Trading() {
               {isReward?.map((items) => (
                 <>
                   <tr>
+                    {console.log("items", items)}
                     <td data-title="Date">
                       {new Date(items?.createdAt)?.toDateString().slice(4)}
                     </td>
