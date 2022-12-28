@@ -8,8 +8,8 @@ import toast, { Toaster } from "react-hot-toast";
 import WithdrawAmount from "./WithdrawAmount";
 
 const WithdrawReferral = ({ show, rewards, tronBalance }) => {
-  console.log("🚀 ~ WithdrawReferral ~ tronBalance", tronBalance);
-  console.log("🚀 ~ WithDraw ~ rewards", rewards);
+  console.log("🚀 ~ WithdrawReferral ~ show", show);
+
   const [value, setValue] = useState(20);
   const [store, setStore] = useState([]);
   const [error, setError] = useState("");
@@ -83,6 +83,7 @@ const WithdrawReferral = ({ show, rewards, tronBalance }) => {
     if (tronBalance < rewards) {
       toast.error("Insufficient balance");
     } else {
+      setLoading(true);
       setValue(rewards);
       const encrypt = encryptData(
         JSON.stringify({
@@ -101,6 +102,7 @@ const WithdrawReferral = ({ show, rewards, tronBalance }) => {
       if (results.status) {
         toast.success(results.message);
         setLoading(false);
+        setLoadingWithdraw(true);
       } else {
         toast.error(results.message);
         setLoading(false);
