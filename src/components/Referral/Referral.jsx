@@ -7,6 +7,7 @@ import Button from "../Button/Button";
 import { SocialIcon } from "react-social-icons";
 // import ReferralPopup from "./referral popup/ReferralPopup";
 
+const baseURLApp = process.env.REACT_APP_WEBSITE_LINK;
 function Referral() {
   const { decryptData } = useEncryption();
   const getDetelis = decryptData(localStorage.getItem("details"));
@@ -102,33 +103,31 @@ function Referral() {
                 <>
                   <div className="flex gap-5" onClick={openpopp}>
                     <SocialIcon
-                      url={`https://twitter.com/compose/tweet?url= Hello, I would like to invite you to join Wizzcoin Project. Join through  http://192.168.29.103:3000/referralcode/?ref=${refferalCode}`}
+                      url={`https://twitter.com/compose/tweet?url= Hello, I would like to invite you to join Wizzcoin Project. Join through  ${baseURLApp}/?ref=${refferalCode}`}
                       // bgColor="#ff5a01"
                       target="_blank"
                     />
                     <SocialIcon
-                      url={`https://www.linkedin.com/sharing/share-offsite/?url=http://192.168.29.103:3000/referralcode/?ref=${refferalCode}`}
+                      url={`https://www.linkedin.com/sharing/share-offsite/?url=${baseURLApp}/?ref=${refferalCode}`}
+                      target="_blank"
+                      z
+                    />
+                    <SocialIcon
+                      url={`https://api.whatsapp.com/send/?text= Hello, I would like to invite you to join Wizzcoin Project. Join through ${baseURLApp}/?ref=${refferalCode}`}
                       target="_blank"
                     />
                     <SocialIcon
-                      url={`https://api.whatsapp.com/send/?text= Hello, I would like to invite you to join Wizzcoin Project. Join through http://192.168.29.103:3000/referralcode/?ref=${refferalCode}`}
-                      target="_blank"
-                    />
-                    <SocialIcon
-                      url={`https://t.me/share/url?url= Hello, I would like to invite you to join Wizzcoin Project. Join through http://192.168.29.103:3000/referralcode/?ref=${refferalCode}`}
+                      url={`https://t.me/share/url?url= Hello, I would like to invite you to join Wizzcoin Project. Join through ${baseURLApp}/?ref=${refferalCode}`}
                       target="_blank"
                     />
                   </div>
                   <div className="flex mt-5">
-                    <div>
-                      Link :{" "}
-                      {`http://192.168.29.103:3000/referralcode/?ref=${refferalCode}`}
-                    </div>
+                    <div>Link : {`${baseURLApp}/?ref=${refferalCode}`}</div>
 
                     <div
                       onClick={() => {
                         navigator.clipboard.writeText(
-                          `http://192.168.29.103:3000/referralcode/?ref=${refferalCode}`
+                          `${baseURLApp}/?ref=${refferalCode}`
                         );
                         toast.success("Copied successfully");
                       }}
@@ -146,24 +145,16 @@ function Referral() {
             <table className="responsive-table border1">
               <thead>
                 <tr>
-                  <th scope="col">Username</th>
-                  <th scope="col">Date joined</th>
-                  {/* <th scope="col">Number of Nodes</th>
-                  <th scope="col">Status(Active/Inactive)</th> */}
-                  {/* <th scope="col">Spons or List</th>
-                    <th scope="col">View Member</th> */}
+                  <th scope="col">Referral Wallet</th>
+                  <th scope="col">Date</th>
                 </tr>
               </thead>
               {referaalleval1.length === 0 ? (
                 <tbody>
                   <>
                     <tr>
-                      <td data-title="Username">_</td>
-                      <td data-title="Date joined">_</td>
-                      {/* <td data-title="Number of Nodes">_</td>
-                      <td data-title="Status(Active/Inactive)">_</td> */}
-                      {/* <td data-title="Spons or List">_</td>
-                      <td data-title="View Member">_</td> */}
+                      <td data-title="Referral Wallet">_</td>
+                      <td data-title="Date">_</td>
                     </tr>
                   </>
                 </tbody>
@@ -172,9 +163,9 @@ function Referral() {
                   {referaalleval1?.map((items) => (
                     <>
                       <tr>
-                        <td data-title="Username">{items?.walletAddress}</td>
+                        <td data-title="Referral Wallet">{items?.walletAddress.slice(0,4)}...{items?.walletAddress.slice(-4)}</td>
 
-                        <td data-title="Date joined">
+                        <td data-title="Date">
                           {new Date(items?.date)?.toDateString().slice(4)}
                         </td>
                         {/* <td data-title="Number of Nodes">{items?.total}</td> */}

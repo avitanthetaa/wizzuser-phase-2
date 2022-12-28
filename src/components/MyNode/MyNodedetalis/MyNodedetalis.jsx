@@ -30,7 +30,6 @@ function MyNodedetalis({ totlenode }) {
       const result = await instance.get("/withdrawHistory");
 
       const results = decryptData(result.data.data);
-      console.log("🚀 ~ withdrawHistory ~ results", results);
 
       if (results.status) {
         // toast.success(results.message);
@@ -113,50 +112,80 @@ function MyNodedetalis({ totlenode }) {
           </div>
         </div>
 
-        <div className="container mx-auto px-10 mt-10 grid lg:grid-cols-2 gap-6">
+        <div className="container mx-auto mt-10 grid lg:grid-cols-2 gap-6">
           <div>
-            <p className="text-white text-2xl font-bold text-center">Withdrawl Hash Rewards</p>
+            <p className="text-white text-2xl font-bold text-center">
+              Withdrawl Hash Rewards
+            </p>
             <table class="responsive-table rounded-2xl">
               <thead>
                 <tr>
-                  <th scope="col">Date</th>
+                  <th scope="col">Date </th>
                   <th scope="col">Rewards</th>
                 </tr>
               </thead>
 
-              <tbody>
-                {withdrawhistory?.map((item, index) => (
-                  <tr key={index}>
-                    <td data-title="Rewards">
-                      {new Date(item?.createdAt)?.toDateString().slice(4)}
-                    </td>
-                    <td data-title="Date">{item.reward}</td>
-                  </tr>
-                ))}
-              </tbody>
+              {withdrawhistory?.length === 0 ? (
+                <tbody>
+                  <>
+                    <tr>
+                      <td data-title="Date">_</td>
+                      <td data-title="Rewards">_</td>
+                      {/* <td data-title="Number of Nodes">_</td>
+                      <td data-title="Status(Active/Inactive)">_</td> */}
+                      {/* <td data-title="Spons or List">_</td>
+                      <td data-title="View Member">_</td> */}
+                    </tr>
+                  </>
+                </tbody>
+              ) : (
+                <tbody>
+                  {withdrawhistory?.map((item, index) => (
+                    <tr key={index}>
+                      <td data-title="Date">
+                        {new Date(item?.createdAt)?.toDateString().slice(4)}
+                      </td>
+                      <td data-title="Rewards">{item.reward}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              )}
             </table>
           </div>
 
           <div>
-          <p className="text-white text-2xl font-bold text-center">Withdrawl Referral Rewards</p>
+            <p className="text-white text-2xl font-bold text-center">
+              Withdrawl Referral Rewards
+            </p>
             <table class="responsive-table rounded-2xl">
               <thead>
                 <tr>
-                  <th scope="col">Date</th>
+                  <th scope="col">Date </th>
                   <th scope="col">Rewards</th>
                 </tr>
               </thead>
 
-              <tbody>
-                {withdrawreferralhistory?.map((item, index) => (
-                  <tr key={index}>
-                    <td data-title="Rewards">
-                      {new Date(item?.createdAt)?.toDateString().slice(4)}
-                    </td>
-                    <td data-title="Date">{item.rewards}</td>
-                  </tr>
-                ))}
-              </tbody>
+              {withdrawreferralhistory.length === 0 ? (
+                <tbody>
+                  <>
+                    <tr>
+                      <td data-title="Date">_</td>
+                      <td data-title="Rewards">_</td>
+                    </tr>
+                  </>
+                </tbody>
+              ) : (
+                <tbody>
+                  {withdrawreferralhistory?.map((item, index) => (
+                    <tr key={index}>
+                      <td data-title="Date">
+                        {new Date(item?.createdAt)?.toDateString().slice(4)}
+                      </td>
+                      <td data-title="Rewards">{item.rewards}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              )}
             </table>
           </div>
         </div>

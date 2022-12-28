@@ -32,62 +32,39 @@ function Trading() {
   return (
     <>
       <p className="text-white text-2xl font-bold text-center mt-10 ">
-         Rewards Received
+        Rewards Received
       </p>
       <div className="container mx-auto px-10 ">
-        <table class="responsive-table rounded-2xl">
+        <table className="responsive-table border1">
           <thead>
             <tr>
               <th scope="col">Date</th>
               <th scope="col">Rewards</th>
             </tr>
           </thead>
-
-          <tbody>
-            {isReward?.map((item, index) => (
-              <tr key={index}>
-                <td data-title="Rewards">
-                  {new Date(item?.createdAt)?.toDateString().slice(4)}
-                </td>
-                <td data-title="Date">
-                  {item.rewards}{" "}
-                  {console.log(new Date(item?.createdAt)?.toDateString())}
-                </td>
-              </tr>
-            ))}
-            {/* <tr>
-              <td data-title="Date">_</td>
-              <td data-title="Smart NODE">_</td>
-              <td data-title="Power NODE">_</td>
-              <td data-title="Master NODE">_</td>
-              <td data-title="Total NODES">_</td>
-              <td data-title="Rewards Received">_</td>
-            </tr>
-            <tr>
-              <td data-title="Date">_</td>
-              <td data-title="Smart NODE">_</td>
-              <td data-title="Power NODE">_</td>
-              <td data-title="Master NODE">_</td>
-              <td data-title="Total NODES">_</td>
-              <td data-title="Rewards Received">_</td>
-            </tr>
-            <tr>
-              <td data-title="Date">_</td>
-              <td data-title="Smart NODE">_</td>
-              <td data-title="Power NODE">_</td>
-              <td data-title="Master NODE">_</td>
-              <td data-title="Total NODES">_</td>
-              <td data-title="Rewards Received">_</td>
-            </tr>
-            <tr>
-              <td data-title="Date">_</td>
-              <td data-title="Smart NODE">_</td>
-              <td data-title="Power NODE">_</td>
-              <td data-title="Master NODE">_</td>
-              <td data-title="Total NODES">_</td>
-              <td data-title="Rewards Received">_</td>
-            </tr> */}
-          </tbody>
+          {isReward.length === 0 ? (
+            <tbody>
+              <>
+                <tr>
+                  <td data-title="Date">_</td>
+                  <td data-title="Rewards">_</td>
+                </tr>
+              </>
+            </tbody>
+          ) : (
+            <tbody>
+              {isReward?.map((items) => (
+                <>
+                  <tr>
+                    <td data-title="Date">
+                      {new Date(items?.createdAt)?.toDateString().slice(4)}
+                    </td>
+                    <td data-title="Rewards">{items?.rewards}</td>
+                  </tr>
+                </>
+              ))}
+            </tbody>
+          )}
         </table>
       </div>
     </>
