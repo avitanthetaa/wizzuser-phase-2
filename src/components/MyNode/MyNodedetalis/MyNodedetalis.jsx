@@ -115,7 +115,7 @@ function MyNodedetalis({ totlenode }) {
 
         <div className="container mx-auto px-10 mt-10 grid lg:grid-cols-2 gap-6">
           <div>
-            <p className="text-white text-2xl font-bold text-center">Hash Rewards</p>
+            <p className="text-white text-2xl font-bold text-center">Withdrawl Hash Rewards</p>
             <table class="responsive-table rounded-2xl">
               <thead>
                 <tr>
@@ -138,7 +138,7 @@ function MyNodedetalis({ totlenode }) {
           </div>
 
           <div>
-          <p className="text-white text-2xl font-bold text-center">Referral Rewards</p>
+          <p className="text-white text-2xl font-bold text-center">Withdrawl Referral Rewards</p>
             <table class="responsive-table rounded-2xl">
               <thead>
                 <tr>

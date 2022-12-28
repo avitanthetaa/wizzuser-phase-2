@@ -73,6 +73,8 @@ const WithdrawReferral = ({ show, rewards, tronBalance }) => {
         setLoadingWithdraw(true);
       } else {
         toast.error(results.message);
+        setLoading(false);
+        show();
       }
     } catch (err) {}
   };
@@ -101,6 +103,8 @@ const WithdrawReferral = ({ show, rewards, tronBalance }) => {
         setLoading(false);
       } else {
         toast.error(results.message);
+        setLoading(false);
+        show();
       }
     }
   };
@@ -194,15 +198,21 @@ const WithdrawReferral = ({ show, rewards, tronBalance }) => {
               )
             : null}
 
-          {loading ? <div></div> : null}
-
-          {loadingWithdraw ? (
-            <WithdrawAmount
-              value={value}
-              show={show}
-              loading={() => setLoading()}
-            />
+          {loading ? (
+            <div className="text-center flex justify-center">
+              <div className="hm-spinner"></div>
+            </div>
           ) : null}
+
+          {!loading
+            ? loadingWithdraw && (
+                <WithdrawAmount
+                  value={value}
+                  show={show}
+                  loading={() => setLoading()}
+                />
+              )
+            : null}
         </div>
       </div>
     </>

@@ -31,7 +31,10 @@ function Trading() {
 
   return (
     <>
-      <div className="container mx-auto px-10 mt-10 ">
+      <p className="text-white text-2xl font-bold text-center mt-10 ">
+         Rewards Received
+      </p>
+      <div className="container mx-auto px-10 ">
         <table class="responsive-table rounded-2xl">
           <thead>
             <tr>

@@ -6,16 +6,22 @@ import useEncryption from "../../EncryptData/EncryptData";
 import instance from "../../BaseUrl/BaseUrl";
 import toast, { Toaster } from "react-hot-toast";
 import WithdrawAmount from "./WithdrawAmount";
+import { useNavigate } from "react-router-dom";
 
 const WithDraw = ({ show, rewards, tronBalance }) => {
+  console.log("🚀 ~ WithDraw ~ rewards", rewards)
+  console.log("🚀 ~ WithDraw ~ tronBalance", tronBalance)
   const [value, setValue] = useState(20);
   const [store, setStore] = useState([]);
+  console.log("🚀 ~ WithDraw ~ store", store);
   const [error, setError] = useState("");
 
   const { encryptData, decryptData } = useEncryption();
 
   const [loading, setLoading] = useState(false);
   const [loadingWithdraw, setLoadingWithdraw] = useState(false);
+
+  const navigate = useNavigate();
 
   //======== increment Quantity========
   function increment() {
@@ -50,8 +56,8 @@ const WithDraw = ({ show, rewards, tronBalance }) => {
   // ========= get rewards API =========
 
   const withdrawTron = async () => {
-    setLoading(true);
     try {
+      setLoading(true);
       const encrypt = encryptData(
         JSON.stringify({
           withdraw: value,
@@ -71,6 +77,9 @@ const WithDraw = ({ show, rewards, tronBalance }) => {
         setLoadingWithdraw(true);
       } else {
         toast.error(results.message);
+        setLoading(false);
+        // setLoadingWithdraw(true);
+        show();
       }
     } catch (err) {}
   };
@@ -79,6 +88,7 @@ const WithDraw = ({ show, rewards, tronBalance }) => {
     if (tronBalance < rewards) {
       toast.error("Insufficient balance");
     } else {
+      setLoading(true);
       setValue(rewards);
       const encrypt = encryptData(
         JSON.stringify({
@@ -97,8 +107,11 @@ const WithDraw = ({ show, rewards, tronBalance }) => {
       if (results.status) {
         toast.success(results.message);
         setLoading(false);
+        setLoadingWithdraw(true);
       } else {
         toast.error(results.message);
+        setLoading(false);
+        show();
       }
     }
   };
@@ -193,13 +206,15 @@ const WithDraw = ({ show, rewards, tronBalance }) => {
               )
             : null}
 
-          {loadingWithdraw ? (
-            <WithdrawAmount
-              value={value}
-              show={show}
-              loading={() => setLoading()}
-            />
-          ) : null}
+          {!loading
+            ? loadingWithdraw && (
+                <WithdrawAmount
+                  value={value}
+                  show={show}
+                  loading={() => setLoading()}
+                />
+              )
+            : null}
 
           {loading ? (
             <div className="text-center flex justify-center">

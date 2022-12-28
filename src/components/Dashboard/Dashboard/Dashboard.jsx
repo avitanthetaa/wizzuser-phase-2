@@ -307,6 +307,7 @@ function Dashboard({ totlenode }) {
       const result = await instance.get("/getPrice");
 
       const results = decryptData(result.data.data);
+      console.log("🚀 ~ getPrice ~ results", results);
 
       if (results.status) {
         // toast.success(results.message);
@@ -427,6 +428,7 @@ function Dashboard({ totlenode }) {
     //   remainingNodes();
     //   effectCalled.current = true;
     // }
+    gettronweb();
     setpopup(true);
     getRewards();
     getRewardsHistory();
@@ -447,8 +449,6 @@ function Dashboard({ totlenode }) {
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} />
-
-      
 
       {openWithdrawReferralPopup && (
         <WithdrawReferral
@@ -865,7 +865,7 @@ function Dashboard({ totlenode }) {
             id="modal"
           >
             <div className="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-              <div className="relative py-8 px-5 md:px-10 nodetype-bg   border-[#14206A] border-2 rounded-3xl shadow-2xl -3xl  ">
+              <div className="relative py-8 px-5 md:px-10 nodetype-bg  ` border-[#14206A] border-2 rounded-3xl shadow-2xl -3xl  ">
                 <h1 className="text-[white] font-lg font-bold tracking-normal leading-tight mb-4">
                   Currency
                 </h1>
@@ -963,12 +963,12 @@ function Dashboard({ totlenode }) {
                 <div className="rounded-md bg-[#DCE0FF] p-2">
                   <p>TIER 1 of 25</p>
                 </div>
-              </div> */}
-                <div className="mt-10 text-center rounded-md bg-[#97A5FC] p-3">
+              </div>                <div className="mt-10 text-center rounded-md bg-[#97A5FC] p-3">
                   <p className="text-[black] text-xl font-bold leading-tight tracking-normal">
                     {totalremaining?.smart} / {totalsupply?.master} Remain
                   </p>
                 </div>
+                 */}
 
                 <div className="flex items-center gap-2 mt-8">
                   <label className="text-[white] text-xl font-bold leading-tight tracking-normal">
