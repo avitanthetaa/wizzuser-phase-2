@@ -19,28 +19,28 @@ export default function Example() {
   const Accordiondata = [
     {
       id: 1,
-      title: "What is WIZZ token?",
-      content: `WIZZ token is the utility token in the whole WIZZ Eco System`,
+      title: "What is Aalpha Mining Hash?",
+      content: `Aalpha Mining is the utility to mine and get passive income.`,
     },
     {
       id: 2,
-      title: "What is WIZZ NFT Node?",
-      content: `WIZZ NFT node is the first step to getting WIZZ token. WIZZ node holders will be rewarded WIZZ tokens every day for up to 10 years depending on the types of nodes you hold.`,
+      title: "What is Aalpha Hash Node?",
+      content: `Aalpha hash is the first step to mining. Aalpha Hash holders will be rewarded every day for up to 10 years depending on the 2% of deposits.`,
     },
     {
       id: 3,
-      title: "What are the requirements to run a WIZZ node? ",
-      content: `No specification or no setup to run WIZZ nodes. all nodes run as NFT. Buy and run. `,
+      title: "What are the requirements to run an Aalpha hash mining node? ",
+      content: `No specification or no setup to run aalpha nodes. all nodes run as mining hash. Buy and run. `,
     },
     {
       id: 4,
-      title: "How many nodes one account holder can buy? ",
-      content: `As of now, a limited number of nodes can be created per wallet, which is 100 Smart nodes and 10 Power nodes. `,
+      title: "How many mining hash nodes one account holder can buy? ",
+      content: `As of now, a limited number 1000 of nodes can be created per wallet. `,
     },
     {
       id: 5,
-      title: "Which wallets is WIZZ DApp support? ",
-      content: `We strongly recommend using TronLink as it causes the least issues `,
+      title: "Which wallets is aalpha we DApp support? ",
+      content: `We strongly recommend using TronLink Pro as it causes the least issues `,
     },
   ];
   return (
