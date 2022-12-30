@@ -95,7 +95,7 @@ function Referral() {
                 </div>
               </p>
 
-              <p>Share your referral code with friends and get rewards</p>
+              <p>Share your referral code with friends and get 10 % direct rewards for each deposits from friend.</p>
               <div className="my-5" onClick={openpopp}>
                 <Button btn={"Share Link"} />
               </div>
@@ -103,7 +103,7 @@ function Referral() {
                 <>
                   <div className="flex gap-5" onClick={openpopp}>
                     <SocialIcon
-                      url={`https://twitter.com/compose/tweet?url= Hello, I would like to invite you to join Wizzcoin Project. Join through  ${baseURLApp}/?ref=${refferalCode}`}
+                      url={`https://twitter.com/compose/tweet?url= Hello, I would like to invite you to join Aalpha Hash Mine Project. Join through  ${baseURLApp}/?ref=${refferalCode}`}
                       // bgColor="#ff5a01"
                       target="_blank"
                     />
@@ -113,11 +113,11 @@ function Referral() {
                       z
                     />
                     <SocialIcon
-                      url={`https://api.whatsapp.com/send/?text= Hello, I would like to invite you to join Wizzcoin Project. Join through ${baseURLApp}/?ref=${refferalCode}`}
+                      url={`https://api.whatsapp.com/send/?text= Hello, I would like to invite you to join Aalpha Hash Mine Project. Join through ${baseURLApp}/?ref=${refferalCode}`}
                       target="_blank"
                     />
                     <SocialIcon
-                      url={`https://t.me/share/url?url= Hello, I would like to invite you to join Wizzcoin Project. Join through ${baseURLApp}/?ref=${refferalCode}`}
+                      url={`https://t.me/share/url?url= Hello, I would like to invite you to join Aalpha Hash Mine Project. Join through ${baseURLApp}/?ref=${refferalCode}`}
                       target="_blank"
                     />
                   </div>
