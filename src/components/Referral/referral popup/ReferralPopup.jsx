@@ -38,6 +38,7 @@ const ReferralPopup = ({ show }) => {
 
       if (results.status) {
         toast.success(results.message);
+        show();
       } else {
         toast.error(results.message);
       }
@@ -48,7 +49,7 @@ const ReferralPopup = ({ show }) => {
 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} />*/}
       <div
         className="py-3  z-50 flex justify-center items-center mx-auto fixed top-0 right-0 bottom-0 left-0 backdrop-blur"
         id="modal"
@@ -76,7 +77,8 @@ const ReferralPopup = ({ show }) => {
                     className="  focus:outline-none  font-light w-full h-10 flex items-center bg-[#97A5FC] placeholder:text-black border-y text-center caret-black"
                     placeholder="Enter Referral Code"
                     type="text"
-                    value={value ? value : search?.split("=")[1]}
+                    // value={value ? value : search?.split("=")[1]}
+                    value={value}
                     onChange={handleChange}
                     minLength="34"
                     maxLength="34"

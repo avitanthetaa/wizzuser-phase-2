@@ -11,6 +11,7 @@ export default function Example() {
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
+
   const customAnimation = {
     mount: { scale: 1 },
     unmount: { scale: 0.9 },
@@ -30,7 +31,8 @@ export default function Example() {
     {
       id: 3,
       title: "What are the requirements to run an Aalpha hash mining node? ",
-      content: `No specification or no setup to run aalpha nodes. all nodes run as mining hash. Buy and run. `,
+      content: `No specification or no setup to run aalpha nodes. all nodes run as 
+      mining hash. Buy and run. `,
     },
     {
       id: 4,
@@ -43,6 +45,7 @@ export default function Example() {
       content: `We strongly recommend using TronLink Pro as it causes the least issues `,
     },
   ];
+
   return (
     <>
       <div className="container mx-auto max-w-6xl px-4 mt-10">

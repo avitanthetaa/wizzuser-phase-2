@@ -174,7 +174,7 @@ function SignUp() {
       if (results.status) {
         toast.success(results.message);
         setopenotpbox(true);
-      } 
+      }
       // else {
       //   toast.error(results.message);
       // }
@@ -256,7 +256,7 @@ function SignUp() {
         <OTP email={email} route={route} />
       ) : (
         <>
-          <Toaster position="top-right" reverseOrder={false} />
+          {/* <Toaster position="top-right" reverseOrder={false} />*/}
           <div className="flex items-center ">
             <div className="md:w-full nodetype-bg  e rounded-3xl shadow-lg md:p-14 p-8 md:m-9 my-10 mx-5 md:max-w-xl md:mx-auto container">
               <span className="block w-full text-[35px] font-bold golden   mb-10 text-center login">

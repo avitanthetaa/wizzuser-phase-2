@@ -91,10 +91,16 @@ function App() {
 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      <div className="md:block hidden">
+        <Toaster position="top-right" />
+      </div>
+
+      <div className="md:hidden block">
+        <Toaster position="bottom-right" />
+      </div>
+
       <div className="flex  h-full">
         <Navbar />
-
         <div className="lg:ml-[54px] w-full h-screen h min-h-screen bg ">
           <Logo />
           <Routes>

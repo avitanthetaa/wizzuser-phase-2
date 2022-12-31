@@ -448,8 +448,7 @@ function Dashboard({ totlenode }) {
 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
-
+      {/* <Toaster position="top-right" reverseOrder={false} />*/}
       {openWithdrawReferralPopup && (
         <WithdrawReferral
           show={() => setOpenWithdrawReferralPopup()}
@@ -689,7 +688,7 @@ function Dashboard({ totlenode }) {
                   {referralRewards === undefined ? 0 : referralRewards}
                   <p className="text-lg">USDT</p>
                 </div>
-                <button onClick={withdrawTronPopup}>
+                <button onClick={withdrawTronReferralPopup}>
                   <Button btn={"Withdraw"} tronBalance={tronbalance} />
                 </button>
               </div>

@@ -64,7 +64,7 @@ function Logo() {
 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} />*/}
       <div className=" container  mx-auto md:py-10  px-10 mt-16 md:mt-16 lg:mt-0">
         <div className="flex justify-between gap-5 items-center">
           {/* 

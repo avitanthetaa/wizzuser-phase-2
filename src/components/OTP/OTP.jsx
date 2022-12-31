@@ -150,7 +150,7 @@ function OTP({ email, route }) {
       ) : (
         <>
           <div>
-            <Toaster position="top-right" reverseOrder={false} />
+            {/* <Toaster position="top-right" reverseOrder={false} />*/}
             <div className=" py-20 px-2 ">
               <div className="container mx-auto">
                 <div className="max-w-sm  mx-auto md:max-w-lg">

@@ -95,7 +95,10 @@ function Referral() {
                 </div>
               </p>
 
-              <p>Share your referral code with friends and get 10 % direct rewards for each deposits from friend.</p>
+              <p>
+                Share your referral code with friends and get 10 % direct
+                rewards for each deposits from friend.
+              </p>
               <div className="my-5" onClick={openpopp}>
                 <Button btn={"Share Link"} />
               </div>
@@ -110,7 +113,6 @@ function Referral() {
                     <SocialIcon
                       url={`https://www.linkedin.com/sharing/share-offsite/?url=${baseURLApp}/?ref=${refferalCode}`}
                       target="_blank"
-                      z
                     />
                     <SocialIcon
                       url={`https://api.whatsapp.com/send/?text= Hello, I would like to invite you to join Aalpha Hash Mine Project. Join through ${baseURLApp}/?ref=${refferalCode}`}
@@ -163,7 +165,10 @@ function Referral() {
                   {referaalleval1?.map((items) => (
                     <>
                       <tr>
-                        <td data-title="Referral Wallet">{items?.walletAddress.slice(0,4)}...{items?.walletAddress.slice(-4)}</td>
+                        <td data-title="Referral Wallet">
+                          {items?.walletAddress.slice(0, 4)}...
+                          {items?.walletAddress.slice(-4)}
+                        </td>
 
                         <td data-title="Date">
                           {new Date(items?.date)?.toDateString().slice(4)}

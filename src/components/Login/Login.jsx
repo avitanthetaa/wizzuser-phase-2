@@ -82,7 +82,7 @@ function Login() {
 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} />*/}
 
       <div className="flex items-center">
         <div className="w-full nodetype-bg  rounded-3xl shadow-lg p-14 md:p-14 md:m-9 my-10 mx-5 md:max-w-xl md:mx-auto  container">

@@ -97,7 +97,7 @@ function ResetPassword({ email }) {
 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} />*/}
       <div className="flex items-center ">
         <div className="md:w-full   nodetype-bg rounded-3xl shadow-lg md:p-14 p-8 md:m-9 my-10 mx-5 md:max-w-xl md:mx-auto container">
           <span className="block w-full golden text-[35px] font-bold   mb-10 text-center login">
