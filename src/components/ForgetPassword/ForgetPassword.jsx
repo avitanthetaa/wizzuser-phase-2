@@ -4,7 +4,7 @@ import "../Login/SignUp.css";
 import { useLocation } from "react-router-dom";
 import useEncryption from "../EncryptData/EncryptData";
 import instance from "../BaseUrl/BaseUrl";
-import toast, { Toaster } from "react-hot-toast";
+import { toast } from "react-toastify";
 import OTP from "../OTP/OTP";
 import Button from "../Button/Button";
 function ForgetPassword() {

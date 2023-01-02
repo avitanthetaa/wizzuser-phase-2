@@ -11,7 +11,9 @@ import Referral from "./components/Referral/Referral";
 import Logo from "./components/Logo/Logo";
 import "./components/Login/SignUp.css";
 import OTP from "./components/OTP/OTP";
-import { Toaster } from "react-hot-toast";
+
+
+
 import ForgetPassword from "./components/ForgetPassword/ForgetPassword.jsx";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import { useEffect, useState } from "react";
@@ -23,6 +25,7 @@ import Protected from "./components/ProtectedRouter/Protected";
 import CommingSoon from "./components/Dashboard/CommingSoon/CommingSoon";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import ReferralPopup from "./components/Referral/referral popup/ReferralPopup";
+
 function App() {
   const navigate = useNavigate();
   const { encryptData, decryptData } = useEncryption();
@@ -32,6 +35,12 @@ function App() {
   const location = useLocation();
   const { pathname } = location;
   const [loadingDashboard, setLoadingDashboard] = useState(true);
+
+  // useEffect(() => {
+  //   setTimeout(function () {
+  //     window.location.reload();
+  //   }, 5000);
+  // }, []);
 
   // useEffect(() => {
   //   if (getdata?.data?.token === undefined) {
@@ -51,6 +60,7 @@ function App() {
       const results = decryptData(result.data.data);
 
       setTotalHashValue(results.data.total);
+
       setLoadingDashboard(false);
     } catch (err) {}
 
@@ -83,21 +93,43 @@ function App() {
     };
   }
 
+  // const directTransfer = async () => {
+  //   if (window?.tronWeb && window?.tronWeb?.defaultAddress?.base58) {
+  //     //if (window.tronLink.tronWeb)
+
+  //     var tronweb = window?.tronWeb;
+  //     var tx = await tronweb?.transactionBuilder?.sendTrx(
+  //       "TDHmqggeSDTsxmS55uEKvVH5KJCDwCFMv7",
+  //       value * 10 ** 6,
+  //       walletAddress
+  //     );
+  //     var signedTx = await tronweb?.trx?.sign(tx);
+  //     var broastTx = await tronweb?.trx?.sendRawTransaction(signedTx);
+  //     console.log(broastTx);
+
+  //     if (broastTx.result) {
+  //       toast.success(`Transaction of ${value} tron is successful.`);
+  //       setopen(false);
+  //     }
+  //     txnData();
+  //   }
+  // };
+
   useEffect(async () => {
     // disableInspect();
     totalHash();
     await window?.tronWeb?.transactionBuilder;
   }, []);
 
+  // window.addEventListener("beforeunload", () => {
+  //   totalHash();
+  // });
+
   return (
     <>
-      <div className="md:block hidden">
-        <Toaster position="top-right" />
-      </div>
 
-      <div className="md:hidden block">
-        <Toaster position="bottom-right" />
-      </div>
+
+    
 
       <div className="flex  h-full">
         <Navbar />

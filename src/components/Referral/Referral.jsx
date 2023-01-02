@@ -119,7 +119,7 @@ function Referral() {
                       target="_blank"
                     />
                     <SocialIcon
-                      url={`https://t.me/share/url?url= Hello, I would like to invite you to join Aalpha Hash Mine Project. Join through ${baseURLApp}/?ref=${refferalCode}`}
+                      url={`https://telegram.me/share/url?url= Hello, I would like to invite you to join Aalpha Hash Mine Project. Join through ${baseURLApp}/?ref=${refferalCode}`}
                       target="_blank"
                     />
                   </div>
@@ -143,7 +143,7 @@ function Referral() {
           )}
           <MainTitle title={"Referral"} />
 
-          <div className="rounded-2xl  ">
+          <div className="rounded-2xl">
             <table className="responsive-table border1">
               <thead>
                 <tr>

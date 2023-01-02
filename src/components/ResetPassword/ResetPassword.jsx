@@ -7,7 +7,7 @@ import useEncryption from "../EncryptData/EncryptData";
 import instance from "../BaseUrl/BaseUrl";
 import { useDispatch } from "react-redux";
 import { signup } from "../Feature/User";
-import toast, { Toaster } from "react-hot-toast";
+import { toast } from "react-toastify";
 import "../Login/SignUp.css";
 import Button from "../Button/Button";
 

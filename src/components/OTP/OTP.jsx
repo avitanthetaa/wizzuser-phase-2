@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useCallback, useEffect } from "react";
 import Button from "../Button/Button";
-import toast, { Toaster } from "react-hot-toast";
+import { toast } from "react-toastify";
 import OTPInput from "otp-input-react";
 import { useState } from "react";
 import useEncryption from "../EncryptData/EncryptData";

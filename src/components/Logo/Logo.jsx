@@ -5,7 +5,7 @@ import wizzlogo from "../img/wizz-logo.png";
 import { Link, useLocation } from "react-router-dom";
 import useEncryption from "../EncryptData/EncryptData";
 import instance from "../BaseUrl/BaseUrl";
-import toast, { Toaster } from "react-hot-toast";
+import { toast } from "react-toastify";
 
 function Logo() {
   const { encryptData, decryptData } = useEncryption();

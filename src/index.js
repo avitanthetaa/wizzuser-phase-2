@@ -12,6 +12,10 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { CookiesProvider } from "react-cookie";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
+import { Toaster } from "react-hot-toast";
+import { ToastContainer, toast } from "react-toastify";
+import { slice } from "stylis";
+import "react-toastify/dist/ReactToastify.css";
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
 // devTools: process.env.NODE_ENV !== "production",
@@ -38,6 +42,41 @@ root.render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <CookiesProvider>
+          <div className="hidden md:block">
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              Transition={slice}
+              style={{ fontSize: "16px", zIndex: 999999999999 }}
+              pauseOnHover
+            />
+          </div>
+          <div className="block md:hidden">
+            <ToastContainer
+              position="bottom-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              Transition={slice}
+              style={{
+                width: "90%",
+                fontSize: "14px",
+                margin: "20px",
+                zIndex: 999999999999,
+              }}
+              pauseOnHover
+            />
+          </div>
           <App />
         </CookiesProvider>
       </PersistGate>

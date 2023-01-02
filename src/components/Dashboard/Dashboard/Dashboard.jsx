@@ -15,7 +15,7 @@ import "slick-carousel/slick/slick-theme.css";
 import smartnode from "../../img/Smartnode.png";
 import useEncryption from "../../EncryptData/EncryptData";
 import instance from "../../BaseUrl/BaseUrl";
-import toast, { Toaster } from "react-hot-toast";
+import { toast } from "react-toastify";
 import $ from "jquery";
 import Web3 from "web3";
 import { Link, useNavigate } from "react-router-dom";
@@ -87,7 +87,7 @@ function Dashboard({ totlenode }) {
 
   const openpopp = () => {
     if (getdata === undefined) {
-      toast.error("Please authenticate yourself");
+      toast.error("Please Connect Wallet");
     } else {
       setopen(true);
     }
@@ -95,7 +95,7 @@ function Dashboard({ totlenode }) {
 
   const withdrawTronPopup = () => {
     if (getdata === undefined) {
-      toast.error("Please authenticate yourself");
+      toast.error("Please Connect Wallet");
     } else {
       if (rewards > 20) {
         setOpenWithdrawPopup(true);
@@ -107,7 +107,7 @@ function Dashboard({ totlenode }) {
 
   const withdrawTronReferralPopup = () => {
     if (getdata === undefined) {
-      toast.error("Please authenticate yourself");
+      toast.error("Please Connect Wallet");
     } else {
       if (referralRewards > 20) {
         setOpenWithdrawReferralPopup(true);

@@ -9,7 +9,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useEncryption from "../EncryptData/EncryptData";
 import instance from "../BaseUrl/BaseUrl";
 import { useDispatch } from "react-redux";
-import toast, { Toaster } from "react-hot-toast";
+import { toast } from "react-toastify";
 import OTP from "../OTP/OTP";
 import "../Login/SignUp.css";
 import Button from "../Button/Button";

@@ -3,7 +3,7 @@ import Button from "../../Button/Button";
 import tronImg from "../../img/tron-logo.svg";
 import useEncryption from "../../EncryptData/EncryptData";
 import instance from "../../BaseUrl/BaseUrl";
-import toast, { Toaster } from "react-hot-toast";
+import { toast } from "react-toastify";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const ReferralPopup = ({ show }) => {

@@ -7,7 +7,7 @@ import "./SignUp.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useEncryption from "../EncryptData/EncryptData";
 import instance from "../BaseUrl/BaseUrl";
-import toast, { Toaster } from "react-hot-toast";
+import { toast } from "react-toastify";
 import Button from "../Button/Button";
 import CommingSoon from "../Dashboard/CommingSoon/CommingSoon";
 
