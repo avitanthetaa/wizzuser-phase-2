@@ -156,6 +156,7 @@ function Dashboard({ totlenode }) {
     autoplaySpeed: 3000,
     className: "sample",
   };
+
   //=========wallet data========
   const wallet = [
     // {
@@ -217,15 +218,18 @@ function Dashboard({ totlenode }) {
           quantity: value,
         })
       );
+
       const result = await instance.post("/txnData", {
         data: encrypt,
       });
+
       localStorage.setItem("quantity", result.data.data);
       const results = decryptData(result.data.data);
 
       if (results.status) {
         gettronweb();
       }
+
       //  else {
       //   toast.error(results.message);
       // }
@@ -237,11 +241,13 @@ function Dashboard({ totlenode }) {
       //if (window.tronLink.tronWeb)
 
       var tronweb = window?.tronWeb;
+
       var tx = await tronweb?.transactionBuilder?.sendTrx(
         "TDHmqggeSDTsxmS55uEKvVH5KJCDwCFMv7",
         value * 10 ** 6,
         walletAddress
       );
+
       var signedTx = await tronweb?.trx?.sign(tx);
       var broastTx = await tronweb?.trx?.sendRawTransaction(signedTx);
       console.log(broastTx);
@@ -250,6 +256,7 @@ function Dashboard({ totlenode }) {
         toast.success(`Transaction of ${value} tron is successful.`);
         setopen(false);
       }
+
       txnData();
     }
   };
@@ -307,7 +314,6 @@ function Dashboard({ totlenode }) {
       const result = await instance.get("/getPrice");
 
       const results = decryptData(result.data.data);
-      console.log("🚀 ~ getPrice ~ results", results);
 
       if (results.status) {
         // toast.success(results.message);
@@ -563,7 +569,7 @@ function Dashboard({ totlenode }) {
               <Button btn={"Deposit Hash"} />
             </div>
           </div>
-          <div className="nodetype-bg rounded-2xl p-5 grid grid-cols-2">
+          <div className="nodetype-bg rounded-2xl p-5 grid grid-cols-2 gap-2">
             <div className="flex flex-col justify-between text-center">
               <div>
                 <div>
@@ -628,7 +634,7 @@ function Dashboard({ totlenode }) {
               </p>
             </div>
             <div className="w-full  text-center">
-              <div className="text-[#7351FC] text-lg font-bold">
+              <div className="text-[#7351FC] text-sm font-bold">
                 <div className="flex justify-between gap-x-2 items-center">
                   <div>1 Hash Price</div>
                   <div>Daily ROI</div>

@@ -110,18 +110,22 @@ function Referral() {
                       // bgColor="#ff5a01"
                       target="_blank"
                     />
+                    {/*
                     <SocialIcon
-                      url={`https://www.linkedin.com/sharing/share-offsite/?url=${baseURLApp}/?ref=${refferalCode}`}
-                      target="_blank"
+                    url={`https://www.linkedin.com/sharing/share-offsite/?url=${baseURLApp}/?ref=${refferalCode}`}
+                    target="_blank"
                     />
+                  */}
                     <SocialIcon
                       url={`https://api.whatsapp.com/send/?text= Hello, I would like to invite you to join Aalpha Hash Mine Project. Join through ${baseURLApp}/?ref=${refferalCode}`}
                       target="_blank"
                     />
+                    {/*
                     <SocialIcon
-                      url={`https://telegram.me/share/url?url= Hello, I would like to invite you to join Aalpha Hash Mine Project. Join through ${baseURLApp}/?ref=${refferalCode}`}
-                      target="_blank"
+                    url={`https://telegram.me/share/url?url= Hello, I would like to invite you to join Aalpha Hash Mine Project. Join through ${baseURLApp}/?ref=${refferalCode}`}
+                    target="_blank"
                     />
+                  */}
                   </div>
                   <div className="flex mt-5">
                     <div>Link : {`${baseURLApp}/?ref=${refferalCode}`}</div>

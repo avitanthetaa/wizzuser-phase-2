@@ -12,8 +12,6 @@ import Logo from "./components/Logo/Logo";
 import "./components/Login/SignUp.css";
 import OTP from "./components/OTP/OTP";
 
-
-
 import ForgetPassword from "./components/ForgetPassword/ForgetPassword.jsx";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import { useEffect, useState } from "react";
@@ -93,6 +91,67 @@ function App() {
     };
   }
 
+  // const txnData = async () => {
+  //   try {
+  //     const encrypt = encryptData(
+  //       JSON.stringify({
+  //         walletAddress: getdata?.data?.exists?.walletAddress,
+  //         name: "smart node",
+  //         currency: "TRON",
+  //         quantity: value,
+  //       })
+  //     );
+
+  //     const result = await instance.post("/txnData", {
+  //       data: encrypt,
+  //     });
+
+  //     localStorage.setItem("quantity", result.data.data);
+  //     const results = decryptData(result.data.data);
+
+  //     if (results.status) {
+  //       gettronweb();
+  //     }
+
+  //     //  else {
+  //     //   toast.error(results.message);
+  //     // }
+  //   } catch (err) {}
+  // };
+
+  // var transactionTron = async () => {
+  //   if (window?.tronWeb && window?.tronWeb?.defaultAddress?.base58) {
+  //     //if (window.tronLink.tronWeb)
+
+  //     var tronweb = window?.tronWeb;
+
+  //     var tx = await tronweb?.transactionBuilder?.sendTrx(
+  //       "TDHmqggeSDTsxmS55uEKvVH5KJCDwCFMv7",
+  //       value * 10 ** 6,
+  //       walletAddress
+  //     );
+
+  //     var signedTx = await tronweb?.trx?.sign(tx);
+  //     var broastTx = await tronweb?.trx?.sendRawTransaction(signedTx);
+  //     console.log(broastTx);
+
+  //     if (broastTx.result) {
+  //       toast.success(`Transaction of ${value} tron is successful.`);
+  //       setopen(false);
+  //     }
+
+  //     txnData();
+  //   }
+  // };
+
+  // const payTron = async () => {
+  //   if (getdata?.data?.token === undefined) {
+  //     toast.error(getdata?.message);
+  //   } else {
+  //     await transactionTron();
+  //   }
+  // };
+
   // const directTransfer = async () => {
   //   if (window?.tronWeb && window?.tronWeb?.defaultAddress?.base58) {
   //     //if (window.tronLink.tronWeb)
@@ -127,10 +186,6 @@ function App() {
 
   return (
     <>
-
-
-    
-
       <div className="flex  h-full">
         <Navbar />
         <div className="lg:ml-[54px] w-full h-screen h min-h-screen bg ">

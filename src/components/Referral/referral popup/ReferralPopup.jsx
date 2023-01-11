@@ -46,6 +46,7 @@ const ReferralPopup = ({ show }) => {
   };
 
   const { search } = useLocation();
+  console.log("🚀 ~ ReferralPopup ~ search", search)
 
   return (
     <>

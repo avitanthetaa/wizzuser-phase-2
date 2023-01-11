@@ -11,6 +11,12 @@ function PortfolioBalance() {
   const [active, setactive] = useState(0);
 
   const [isReward, setIsReward] = useState([]);
+
+  const [rewards, setRewards] = useState(0);
+  console.log("🚀 ~ PortfolioBalance ~ rewards", rewards);
+  const [referralRewards, setReferralRewards] = useState(0);
+  console.log("🚀 ~ PortfolioBalance ~ referralRewards", referralRewards);
+
   const { encryptData, decryptData } = useEncryption();
 
   const Rewards = async () => {
@@ -26,7 +32,24 @@ function PortfolioBalance() {
 
       if (results.status) {
         toast.success(results.message);
-      } 
+      }
+      // else {
+      //   toast.error(results.message);
+      // }
+    } catch (err) {}
+  };
+
+  const getRewards = async () => {
+    try {
+      const result = await instance.get("/rewards");
+
+      const results = decryptData(result.data.data);
+
+      if (results.status) {
+        // toast.success(results.message);
+        setRewards(results?.data?.userData?.rewards);
+        setReferralRewards(results?.data?.userData?.referralRewards);
+      }
       // else {
       //   toast.error(results.message);
       // }
@@ -35,6 +58,7 @@ function PortfolioBalance() {
 
   useEffect(() => {
     Rewards();
+    getRewards();
   }, []);
   // =======claim data========
   const claim = [
@@ -70,38 +94,37 @@ function PortfolioBalance() {
           <MainTitle title={"Rewards"} />
         </div>
 
+        <p className="text-white text-lg font-bold text-center my-10 ">
+          Mining Rewards will be added at 7:00 AM UTC everyday.
+        </p>
+
         {/* <div className="text-white text-xl text-center my-5">
           * Rewards distribution has started from 21st October, you will see
           your rewards visible from 21st of November 2022. *
         </div> */}
-        <div className="flex flex-col lg:flex-row  justify-between py-6 mt-3  rounded-xl md:px-10 px-8 nodetype-bg">
-          <div className="lg:order-none  order-1">
-            <p className="md:text-[40px] text-[30px] text-[#7351FC] font-extrabold">
-              Rewards
+
+        <div className="flex lg:flex-row flex-col justify-between items-center py-6 mt-3 bg-[#DFE5FF] rounded-xl px-10  nodetype-bg">
+          <div className="flex flex-col justify-between gap-4">
+            <p className="lg:text-[40px] text-3xl text-[#7351FC] font-extrabold lg:text-end text-center">
+              Hash Rewards
             </p>
-            <p className="text-lg font-medium text-[#22D198]  lg:text-start">
-              Portfolio balance
+            <p className="text-4xl text-color lg:text-start text-center">
+              {rewards === undefined ? 0 : rewards}
+
+              <p className="text-sm lg:text-lg">USDT</p>
             </p>
-            <p className="text-color lg:text-[80px] md:text-[50px] text-[30px] lg:font-extrabold font-bold">
-              {isReward?.userData?.rewards}
-            </p>
+            <p className="text-color border-t-2 py-4 border-white" />
           </div>
-          <div>
-            <div className="flex justify-center items-center  md:gap-5 gap-2 mt-2 ">
-              {claim?.map((index) => (
-                <>
-                  <div key={index.id} onClick={() => setactive(index?.id)}>
-                    <p
-                      className={`md:text-lg text-base text-[#808080] cursor-pointer  ${
-                        active === index.id ? "text-color" : "text-[#808080]"
-                      }`}
-                    >
-                      {/* {index.card} */}
-                    </p>
-                  </div>
-                </>
-              ))}
-            </div>
+          <div className="flex flex-col justify-between gap-4">
+            <p className="lg:text-[40px] text-2xl text-[#7351FC] font-extrabold lg:text-end text-center">
+              Referral Rewards
+            </p>
+            <p className="text-4xl text-color lg:text-end text-center">
+              {referralRewards === undefined ? 0 : referralRewards}
+              <p className="text-sm lg:text-lg">USDT</p>
+            </p>
+            <p />
+            <p className="text-color border-t-2 py-4 border-white" />
           </div>
         </div>
       </div>

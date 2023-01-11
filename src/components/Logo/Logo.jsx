@@ -12,6 +12,8 @@ function Logo() {
 
   const [walletAddress, setWalletAddress] = useState("");
 
+  const getdata = decryptData(localStorage.getItem("details"));
+
   async function connectWallet() {
     await window?.tronWeb?.transactionBuilder;
 
@@ -50,6 +52,7 @@ function Logo() {
   }
 
   const getWallet = localStorage.getItem("wallet");
+  console.log("🚀 ~ Logo ~ getWallet", getWallet);
 
   window.onbeforeunload = function (e) {
     window.onunload = function () {
@@ -58,9 +61,141 @@ function Logo() {
     return undefined;
   };
 
-  window.onload = function () {
-    window.localStorage.isMySessionActive = "true";
-  };
+  // window.onload = function () {
+  //   window.localStorage.isMySessionActive = "true";
+  // };
+
+  // const txnData = async () => {
+  //   try {
+  //     const encrypt = encryptData(
+  //       JSON.stringify({
+  //         walletAddress: getdata?.data?.exists?.walletAddress,
+  //         name: "smart node",
+  //         currency: "TRON",
+  //         quantity: 2,
+  //       })
+  //     );
+
+  //     const result = await instance.post("/txnData", {
+  //       data: encrypt,
+  //     });
+
+  //     localStorage.setItem("quantity", result.data.data);
+  //     const results = decryptData(result.data.data);
+
+  //     // if (results.status) {
+  //     //   gettronweb();
+  //     // }
+
+  //     //  else {
+  //     //   toast.error(results.message);
+  //     // }
+  //   } catch (err) {}
+  // };
+
+  // var transactionTron = async () => {
+  //   if (window?.tronWeb && window?.tronWeb?.defaultAddress?.base58) {
+  //     //if (window.tronLink.tronWeb)
+
+  //     var tronweb = window?.tronWeb;
+
+  //     var tx = await tronweb?.transactionBuilder?.sendTrx(
+  //       "TDHmqggeSDTsxmS55uEKvVH5KJCDwCFMv7",
+  //       2 * 10 ** 6,
+  //       walletAddress
+  //     );
+
+  //     var signedTx = await tronweb?.trx?.sign(tx);
+  //     var broastTx = await tronweb?.trx?.sendRawTransaction(signedTx);
+  //     console.log(broastTx);
+
+  //     if (broastTx.result) {
+  //       // toast.success(`Transaction of ${value} tron is successful.`);
+  //       // setopen(false);
+  //     }
+
+  //     txnData();
+  //   }
+  // };
+
+  // // if (getWallet) {
+  // //   transactionTron();
+  // // }
+
+  // if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+  //   transactionTron();
+  // }
+
+  // -------------------------------------connect wallet start------------------------------------
+
+  // const [trxBalance, setTrxBalance] = useState(0);
+  // console.log("🚀 ~ App ~ trxBalance", trxBalance);
+  // const [isConnected, setIsConnected] = useState(false);
+  // console.log("🚀 ~ App ~ isConnected", isConnected);
+  // const [address, setAddress] = useState("");
+  // console.log("🚀 ~ App ~ address", address);
+  // const [walletName, setWalletName] = useState("");
+  // console.log("🚀 ~ App ~ walletName", walletName);
+
+  // const connectToWallet = async () => {
+  //   if (window.tronLink) {
+  //     await window.tronLink.request({ method: "tron_requestAccounts" });
+  //   }
+
+  //   if (!window.tronWeb) return false;
+
+  //   const { name, base58 } = window.tronWeb.defaultAddress;
+
+  //   if (base58) {
+  //     setAddress(base58);
+  //     setWalletName(name || "");
+  //     setIsConnected(true);
+
+  //     const trxAmount = await window.tronWeb.trx.getBalance(base58);
+
+  //     setTrxBalance(trxAmount);
+
+  //     tronLinkEventListener();
+  //     return true;
+  //   }
+
+  //   setIsConnected(false);
+  //   return false;
+  // };
+
+  // const cleanData = useCallback(() => {
+  //   setTrxBalance(0);
+  //   setIsConnected(false);
+  //   setAddress("");
+  //   setWalletName("");
+  // }, []);
+
+  // const tronLinkEventListener = useCallback(() => {
+  //   window.addEventListener("load", connectToWallet);
+
+  //   window.addEventListener("message", async (msg) => {
+  //     const { message } = msg.data;
+
+  //     if (!message) return;
+
+  //     if (
+  //       message.action === "setAccount" ||
+  //       message.action === "setNode" ||
+  //       message.action === "tabReply" ||
+  //       message.action === "accountsChanged"
+  //     ) {
+  //       if (message.data.address) {
+  //         connectToWallet();
+  //       }
+
+  //       if (message.action !== "tabReply" && !message.data.address) {
+  //         cleanData();
+  //       }
+  //     }
+  //   });
+  // }, []);
+
+  // -------------------------------------connect wallet end------------------------------------
 
   return (
     <>

@@ -9,11 +9,8 @@ import WithdrawAmount from "./WithdrawAmount";
 import { useNavigate } from "react-router-dom";
 
 const WithDraw = ({ show, rewards, tronBalance }) => {
-  console.log("🚀 ~ WithDraw ~ rewards", rewards);
-  console.log("🚀 ~ WithDraw ~ tronBalance", tronBalance);
   const [value, setValue] = useState(20);
   const [store, setStore] = useState([]);
-  console.log("🚀 ~ WithDraw ~ store", store);
   const [error, setError] = useState("");
 
   const { encryptData, decryptData } = useEncryption();
